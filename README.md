@@ -13,7 +13,8 @@ Welcome! This repository is the working space for the **AI for Particle Accelera
 ```
 .
 ├── lectures/       Introductory lectures (Monday morning) — one folder per lecture
-└── challenges/      The 3 hackathon challenges — one folder per challenge
+├── challenges/      The 3 hackathon challenges — one folder per challenge
+└── coding-assistant/ A coding model served on DALIA, for Claude Code or any OpenAI client
 ```
 
 ## Week overview
@@ -38,6 +39,8 @@ Each challenge folder is self-contained and includes:
 See the **[Participant Access Guide](access-guide.md)** for everything you need to set up before the event: GitHub, Agora chat, CC-IN2P3, eDARI, and DALIA @ IDRIS compute access. Start those steps as early as possible — some require approval and can take a few days.
 
 See **[GRADING.md](GRADING.md)** for how objectives are scored and logged to Weights & Biases.
+
+See **[coding-assistant/](coding-assistant/)** to use the coding model that runs on DALIA from Claude Code on your laptop.
 
 ## Contacts
 
