@@ -59,21 +59,11 @@ Measured with a 33,000-token conversation per request.
 
 ## Limits
 
-- The server stops at the end of its job. After a restart the node can change: read it again and reopen the tunnel.
+- The server restarts on Thu 15 Oct around 17:35 and stops on Fri 16 Oct around 15:35. After a restart the node can change: read it again and reopen the tunnel.
 - The model thinks before every answer, at full depth. Long thinking is normal.
 - The weights are a 4-bit version (`RedHatAI/GLM-5.3-Flash-NVFP4`). Its coding scores are not published.
 - `setsockopt TCP_NODELAY: Invalid argument` in the tunnel terminal is harmless.
 
 ## Running the server
 
-One server runs for everyone. Do not start a second one: it takes two more of the 12 hackathon GPUs.
-
-From `/lustre/work/pdl18409/<login>/vllm` on DALIA, with a `slurm_logs` folder next to the scripts:
-
-```bash
-sbatch vllm_pull.sh                    # arm64 vLLM image to a .sif, 7 min, 1 GPU
-sbatch vllm_download.sh                # 198 GB of weights to Lustre, 3 min, no GPU
-sbatch --time=04:00:00 vllm_serve.sh   # 2 GPUs, ready after 11 min
-```
-
-`vllm_serve.sh` writes the node and the key to `/lustre/work/pdl18409/shared/vllm`, readable by the hackathon group. The official FP8 weights (`zai-org/GLM-5.3-Flash`) do not start on two GB200: they take 158 of the 184 GiB of each GPU.
+One server runs for everyone. Do not start a second one: it takes two more of the 12 hackathon GPUs. See [OPS.md](OPS.md).
