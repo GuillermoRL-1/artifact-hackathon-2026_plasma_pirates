@@ -30,9 +30,9 @@
 cd /lustre/work/pdl18409/shared    # navigate to shared folder
 mkdir some_folder                  # create a subdirectory
 # Set the correct rights
-chmod g+s some_folder
-setfacl -d -m g::rwx some_folder
-setfacl -m g::rwx some_folder
+chmod -R g+s some_folder
+setfacl -R -d -m g::rwx some_folder
+setfacl -R -m g::rwx some_folder
 ```
 3. The `module load slurm/slurm/24.11` command has been removed from the example `.bashrc` file because it is already present by default. 
 
