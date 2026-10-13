@@ -3,22 +3,24 @@
 **Speaker:** Stéphane Ilic (IDRIS)  
 **Slot:** Monday, October 12 — early afternoon  
 
-## ⚠️⚠️ ACCESS TO A JUPYTER NOTEBOOK ON DALIA ⚠️⚠️ 
+## 👉 ACCESS TO A JUPYTER NOTEBOOK ON DALIA 👈 
 
-* **Step 1:** Set up your `.ssh/config` file as is describe in Section 2 (step 1) of the present README 
-* **Step 2:** In a terminal on your machine, type the following command:
+* **Step 0:** Make sure you have your SSH key (both private and public) on your machine in your `.ssh` folder (retrieve it from CC-IN2P3 if needed)
+* **Step 1:** Set up your `.ssh/config` file as is described in Section 2 (step 1) of the present README 
+* **Step 2:** In a terminal on your machine, type the following command (**do not forget to change `udlXXXXXX` by your own DALIA username**):
   ```
   ssh -vvv -i ~/.ssh/udlXXXXXX-DALIA -N -L 8891:dalianvl13:8888 udlXXXXXX@dalia
   ```
-  ⚠️ **Do not forget to change `udlXXXXXX` by your own DALIA username**
-
   ⚠️ **Leave the terminal open and running**
 
-* **Step 3:** Open a web browser on your machine, and type the following url:
+* **Step 3:** Open a web browser on your machine, and type the following URL, but **change `INSERT_YOUR_NAME_HERE` beforehand into whatever your want (make it unique!)**:
   ```
   http://127.0.0.1:8891/lab/workspaces/INSERT_YOUR_NAME_HERE?token=f0cd505f14117b5405648280c9955d706d7f145daf0b87e4
   ```
-  ⚠️ **Change `INSERT_YOUR_NAME_HERE` into a name unique enough so that it will be unique to you**
+* **Step 4:** Navigate to any folder you want on DALIA, starting from `/workspace` which leads to the root `/` of DALIA. For example, the Hackathon shared folder can be reached via:
+  ```
+  /workspace/lustre/work/pdl18409/shared 
+  ```
 
 ## ⚠️ BREAKING NEWS ⚠️ (TUESDAY 2026/10/13)
 
