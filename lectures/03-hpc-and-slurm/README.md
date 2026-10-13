@@ -3,7 +3,22 @@
 **Speaker:** Stéphane Ilic (IDRIS)  
 **Slot:** Monday, October 12 — early afternoon  
 
-## ⚠️⚠️ BREAKING NEWS ⚠️⚠️ (TUESDAY 2026/10/13)
+## ⚠️⚠️ ACCESS TO A JUPYTER NOTEBOOK ON DALIA ⚠️⚠️ 
+
+* **Step 1:** Set up your `.ssh/config` file as is describe in Section 2 (step 1) of the present README 
+* **Step 2:** In a terminal on your machine, type the following command:
+```
+ssh -vvv -i ~/.ssh/udlXXXXXX-DALIA -N -L 8891:dalianvl13:8888 udlXXXXXX@dalia
+```
+⚠️ **Do not forget to change `udlXXXXXX` by your own DALIA username**
+⚠️ **Leave the terminal open and running**
+* **Step 3:** Open a web browser on your machine, and type the following url:
+```
+http://127.0.0.1:8891/lab/workspaces/INSERT_YOUR_NAME_HERE?token=f0cd505f14117b5405648280c9955d706d7f145daf0b87e4
+```
+⚠️ **Change `INSERT_YOUR_NAME_HERE` into a name unique enough so that it will be unique to you**
+
+## ⚠️ BREAKING NEWS ⚠️ (TUESDAY 2026/10/13)
 
 1. Two env variables (`$APPTAINER_TMPDIR` and `$TMPDIR`) have been removed from the example `.bashrc` file, due to causing errors when building containers with `apptainer build`
 2. Read/write rights in the **Hackathon shared folder** (`/lustre/work/pdl18409/shared`) are a bit more tricky than expected; **every time you create a subdirectory in that specific folder, a procedure has to be followed in order for all the other Hackathon members to be able to write inside this folder**. The typical sequence is as follows:
@@ -46,10 +61,10 @@ Access requires an **Ed25519 SSH key** registered during onboarding and an autho
 ```ssh-config
 Host dalia
     Hostname dalia.idris.fr
-    User udlxxxxxx
+    User udlxxxxxx                       # replace by your login
     ForwardX11 yes
     ForwardAgent yes
-    IdentityFile ~/.ssh/id_ed25519_dalia
+    IdentityFile ~/.ssh/id_ed25519_dalia # replace by appropriate key file name
 
     # Optional: If routing via CC-IN2P3 jump host:
     # ProxyJump my_cc_login@cca.in2p3.fr
