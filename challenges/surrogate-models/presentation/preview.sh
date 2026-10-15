@@ -18,7 +18,7 @@ trap 'kill "$quarto_pid" 2>/dev/null; rm -f "$stamp"' EXIT INT TERM
 
 while kill -0 "$quarto_pid" 2>/dev/null; do
   sleep 1
-  if [ -n "$(find sections _afterbody.html _pipeline.html pipeline.js kaldera.js trajectory.js custom.scss data/pipeline_snapshot.js data/trajectory_snapshot.js -type f -newer "$stamp" -print -quit 2>/dev/null)" ]; then
+  if [ -n "$(find sections _afterbody.html _pipeline.html pipeline.js kaldera.js trajectory.js custom.scss data/pipeline_snapshot.js data/trajectory_snapshot.js data/explorer -type f -newer "$stamp" -print -quit 2>/dev/null)" ]; then
     touch "$stamp"
     quarto render index.md --quiet || true
   fi

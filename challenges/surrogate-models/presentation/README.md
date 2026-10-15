@@ -78,6 +78,19 @@ from the challenge folder with the team `.env` available:
 ../../../.venv/bin/python presentation/build_pipeline_data.py
 ```
 
+## Rebuild the data explorer pages
+
+The Data exploration slide embeds `data/explorer/<case>.html`, written by
+`build_explorer_report.py`: the analysis and Plotly figures of `feature_target_explorer.py`
+(statistics, correlations, distributions, trajectories, candidate outliers), read once from
+the feature store, one dark tabbed page per case. The live version runs as the Hopsworks app
+`plasma_pirates_explorer` (project members only; Hopsworks forbids showing its apps inside
+other pages, hence the static copy).
+
+```bash
+../../../.venv/bin/python presentation/build_explorer_report.py
+```
+
 ## Rebuild the trajectory data
 
 The trajectory slides (`sections/_18a` to `_18c`) draw with `trajectory.js` from

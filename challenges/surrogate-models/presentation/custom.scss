@@ -452,3 +452,13 @@ $line: rgba(165, 243, 252, 0.22);
 .sigma-control span { margin-left: auto; }
 .traj-switch-center { justify-content: center; margin: -0.2em 0 0.3em; }
 .reveal .slides section#traj-uncertainty h3 { font-size: 0.6em; margin: 0 0 0.2em; color: $muted; }
+
+/* ---- Data exploration (sections/_04, build_explorer_report.py) ----------------------------- */
+.explorer-bar { display: flex; align-items: center; gap: 0.5em; margin: -0.3em 0 0.3em; }
+.explorer-bar .frame-switch { flex: 1; }
+.reveal .explorer-bar a.ext-link { margin: 0; white-space: nowrap; }
+.frame-switch { @extend .viz-switch; margin: 0; }
+.reveal iframe.explorer-frame {
+  display: block; width: 100%; height: 17.4em; max-width: none; max-height: none;
+  border: 1px solid $line; border-radius: 0.35em; background: $navy;
+}

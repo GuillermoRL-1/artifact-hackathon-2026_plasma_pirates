@@ -20,6 +20,24 @@
     titleSlide.appendChild(artworkFrame);
   }
 
+  // Iframes with data-src load when their slide is first shown; .frame-switch buttons swap them.
+  if (typeof Reveal !== 'undefined') {
+    const loadFrames = (slide) => slide?.querySelectorAll('iframe[data-src]').forEach((frame) => {
+      if (!frame.getAttribute('src')) frame.src = frame.dataset.src;
+    });
+    Reveal.on('slidechanged', (event) => loadFrames(event.currentSlide));
+    Reveal.on('ready', () => loadFrames(Reveal.getCurrentSlide()));
+    if (Reveal.isReady()) loadFrames(Reveal.getCurrentSlide());
+  }
+  document.querySelectorAll('.frame-switch').forEach((group) => {
+    group.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
+      group.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === button));
+      const frame = document.getElementById(group.dataset.for);
+      frame.dataset.src = button.dataset.src;
+      frame.src = button.dataset.src;
+    }));
+  });
+
   const videoFrames = document.querySelectorAll('.video-frame');
   if (videoFrames.length && typeof Reveal !== 'undefined') {
     videoFrames.forEach((videoFrame) => {

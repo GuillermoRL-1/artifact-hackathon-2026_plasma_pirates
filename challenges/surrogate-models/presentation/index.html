@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2b79eb14b915cd05ca0c887c5cebbb36.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ad22f4346667784e3a0a306b16f8fe2f.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -307,8 +307,38 @@ Surrogate model</p>
 </section>
 <section id="data-exploration" class="slide level2">
 <h2>Data exploration</h2>
-<iframe class="video-frame video-feature" data-external="1" src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-video-url="https://youtu.be/Bx12V2A3MlQ" title="PALLAS data exploration demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+<div class="explorer-bar">
+<div class="frame-switch" data-for="explorer-frame">
+<button class="active" data-src="data/explorer/trajectory.html">
+Trajectory
+</button>
+<button data-src="data/explorer/direct_B.html">
+Direct B
+</button>
+<button data-src="data/explorer/inverse_A.html">
+Inverse A
+</button>
+<button data-src="data/explorer/inverse_B.html">
+Inverse B
+</button>
+</div>
+<p><a class="ext-link" href="https://aissai26.hops.live/hopsworks-api/pythonapp/m4cast_plasma_pirates/plasma_pirates_explorer/" target="_blank" rel="noopener">Live app in Hopsworks ↗</a> <a class="ext-link" href="https://youtu.be/Bx12V2A3MlQ" target="_blank" rel="noopener">Demo video ↗</a></p>
+</div>
+<iframe id="explorer-frame" class="explorer-frame" data-src="data/explorer/trajectory.html" title="PALLAS data explorer: statistics, correlations, distributions, trajectories and outliers">
 </iframe>
+<aside class="notes">
+<p>The explorer of feature_target_explorer.py, frozen as one page per case by build_explorer_report.py (data read from the Hopsworks feature store when built). The live version is the Hopsworks app plasma_pirates_explorer (project members only); Hopsworks does not allow its apps inside other pages, so the slide carries the static copy.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="pipe-overview" class="slide level2">
 <h2>One pipeline, six steps</h2>
@@ -1040,6 +1070,24 @@ Plasma Pirates
         artworkFrame.appendChild(artwork);
         titleSlide.appendChild(artworkFrame);
       }
+
+      // Iframes with data-src load when their slide is first shown; .frame-switch buttons swap them.
+      if (typeof Reveal !== 'undefined') {
+        const loadFrames = (slide) => slide?.querySelectorAll('iframe[data-src]').forEach((frame) => {
+          if (!frame.getAttribute('src')) frame.src = frame.dataset.src;
+        });
+        Reveal.on('slidechanged', (event) => loadFrames(event.currentSlide));
+        Reveal.on('ready', () => loadFrames(Reveal.getCurrentSlide()));
+        if (Reveal.isReady()) loadFrames(Reveal.getCurrentSlide());
+      }
+      document.querySelectorAll('.frame-switch').forEach((group) => {
+        group.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
+          group.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === button));
+          const frame = document.getElementById(group.dataset.for);
+          frame.dataset.src = button.dataset.src;
+          frame.src = button.dataset.src;
+        }));
+      });
 
       const videoFrames = document.querySelectorAll('.video-frame');
       if (videoFrames.length && typeof Reveal !== 'undefined') {
