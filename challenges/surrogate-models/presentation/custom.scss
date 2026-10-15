@@ -122,6 +122,7 @@ $line: rgba(165, 243, 252, 0.22);
 }
 
 .placeholder.tall { min-height: 8em; margin-top: 0.7em; }
+.video-frame[hidden] { display: none; }
 .video-frame { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 0.7em; border: 1px solid $line; border-radius: 0.35em; background: #000; }
 .video-feature { height: 74vh; max-height: calc(100vh - 4.2em); aspect-ratio: auto; margin-top: 0.15em; }
 .plotly-frame { display: block; width: 100%; border: 1px solid $line; border-radius: 0.35em; background: transparent; }

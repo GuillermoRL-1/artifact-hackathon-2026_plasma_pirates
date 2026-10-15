@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-3270dba208deb353af74dee29be33531.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ca9c489559636a785dec1773a08d08b4.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -227,7 +227,7 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 <p><strong>Central idea</strong></p>
 <p>Replace repeated high-fidelity simulation runs with a fast, validated approximation.</p>
 </div>
-<iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" title="PALLAS simulation video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+<iframe class="video-frame" data-external="1" data-video-url="https://youtu.be/xH0mQ93MpMc" src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" title="PALLAS simulation video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
 </iframe>
 </div></div>
 </section>
@@ -289,7 +289,7 @@ Surrogate model</p>
 </section>
 <section id="data-exploration" class="slide level2">
 <h2>Data exploration</h2>
-<iframe class="video-frame video-feature" src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-video-url="https://youtu.be/Bx12V2A3MlQ" title="PALLAS data exploration demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+<iframe class="video-frame video-feature" data-external="1" src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/Bx12V2A3MlQ?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-video-url="https://youtu.be/Bx12V2A3MlQ" title="PALLAS data exploration demo" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
 </iframe>
 </section>
 <section id="pipe-overview" class="slide level2">
@@ -978,6 +978,9 @@ Plasma Pirates
         ]
       });
     </script>
+    <!-- In the markup (not set from JS) so a self-contained render embeds it. -->
+    <img id="title-artwork-source" class="title-artwork" hidden="" src="index_files/images/plasma_pirates.jpeg" alt="Plasma Pirates crew with a dragon under the moon">
+
     <script>
       // Keep the deck intentionally quiet: the placeholders are meant to be replaced
       // with the final figures and narrative as the R&D work matures.
@@ -989,10 +992,8 @@ Plasma Pirates
       if (titleSlide) {
         const artworkFrame = document.createElement('div');
         artworkFrame.className = 'title-artwork-frame';
-        const artwork = document.createElement('img');
-        artwork.className = 'title-artwork';
-        artwork.src = 'index_files/images/plasma_pirates.jpeg';
-        artwork.alt = 'Plasma Pirates crew with a dragon under the moon';
+        const artwork = document.getElementById('title-artwork-source');
+        artwork.hidden = false;
         artworkFrame.appendChild(artwork);
         titleSlide.appendChild(artworkFrame);
       }
@@ -1008,9 +1009,10 @@ Plasma Pirates
             const fallback = document.createElement('div');
             fallback.className = 'video-fallback';
             const videoUrl = videoFrame.dataset.videoUrl || videoFrame.src;
-            fallback.innerHTML = 'Embedded YouTube playback requires <code>quarto preview</code>. '
+            // YouTube refuses to play inside a page opened from disk (error 153: no referrer).
+            fallback.innerHTML = 'The video cannot play inside a deck opened from a file. '
               + `<a href="${videoUrl}" target="_blank" rel="noopener">`
-              + 'Open the video on YouTube</a>.';
+              + 'Watch it on YouTube ↗</a>';
             videoFrame.parentElement.appendChild(fallback);
           }
 

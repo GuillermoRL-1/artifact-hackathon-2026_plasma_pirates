@@ -49,7 +49,20 @@ To create the static HTML file:
 quarto render index.md
 ```
 
-The resulting HTML is self-contained enough to open or publish as a static deck.
+`index.html` needs the files next to it (`index_files/`, `data/`, `pipeline.js`).
+
+## A single file to share
+
+```bash
+./build_standalone.sh        # writes plasma_pirates_presentation.html (~50 MB, git-ignored)
+```
+
+Everything goes inside that one HTML: scripts, styles, images, the data snapshots,
+the status page and the outlier histogram. Opened from disk it works offline except
+for the CDN libraries (Plotly, MathJax) and the two YouTube videos, which need
+internet. YouTube also refuses to play inside a page opened from a file (error
+153), so from disk each video shows a link to YouTube instead. Served over http
+(any web host or `python3 -m http.server`) the videos play in the slides.
 
 ## Rebuild the pipeline data
 

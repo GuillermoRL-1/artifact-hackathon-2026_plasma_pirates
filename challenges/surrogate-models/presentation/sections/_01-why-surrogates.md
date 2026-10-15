@@ -22,6 +22,8 @@ Replace repeated high-fidelity simulation runs with a fast, validated approximat
 
 <iframe
   class="video-frame"
+  data-external="1"
+  data-video-url="https://youtu.be/xH0mQ93MpMc"
   src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&mute=1&enablejsapi=1&playsinline=1&rel=0"
   data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&mute=1&enablejsapi=1&playsinline=1&rel=0"
   title="PALLAS simulation video"
