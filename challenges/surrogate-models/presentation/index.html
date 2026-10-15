@@ -6,11 +6,11 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="index_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.19">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente">
   <title>Plasma Pirates: Surrogate Models of the PALLAS Simulation</title>
@@ -727,28 +727,40 @@ Inverse A
 <p>Add the principal result figure or prediction-vs-truth plot here.</p>
 </div>
 </section>
-<section id="takeaways-and-next-steps" class="slide level2">
-<h2>Takeaways and next steps</h2>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="takeaways">Takeaways</h3>
-<div class="placeholder list-placeholder">
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<div class="column" style="width:31%;">
+<div class="metric-card">
+<p><strong>A plain MLP is enough, mostly</strong></p>
+<p><code>0.98–0.99 R²</code></p>
+<p>Inverse A, Direct B, trajectory: well-trained MLPs on standardised targets beat every bar; bigger or Bayesian models add ≤ 0.003</p>
 </div>
-</div><div class="column" style="width:44%;">
-<h3 id="next-steps">Next steps</h3>
-<div class="placeholder list-placeholder">
-<ul>
-<li>Validate on new simulation regimes</li>
-<li>Improve uncertainty estimates</li>
-<li>Connect models to the R&amp;D workflow</li>
-</ul>
+</div><div class="column" style="width:31%;">
+<div class="metric-card">
+<p><strong>Out of distribution, structure helps</strong></p>
+<p><code>0.955 → 0.973</code></p>
+<p>Above the density cut, ensembles, FiLM and Bayesian networks hold up better than a plain MLP</p>
+</div>
+</div><div class="column" style="width:31%;">
+<div class="metric-card">
+<p><strong>A billion times faster</strong></p>
+<p><code>~1 ms vs 250 core-hours</code></p>
+<p>One configuration on one CPU core; the whole 2,882-config campaign in ~3 s</p>
 </div>
 </div></div>
+<ul>
+<li>Particles: a FiLM mixture trains in minutes and beats the reference Gaussian (1.44 vs 2.13), with error left to remove</li>
+<li>Hard inverse problems sometimes need several answers: a mixture recovers dip_frac (0.08 → 0.80)</li>
+</ul>
+</section>
+<section id="next-steps" class="slide level2">
+<h2>Next steps</h2>
+<ul>
+<li><strong>Moments:</strong> the beam’s centre wiggles from side to side along the plasma (a betatron oscillation), and our models follow it only partly. Next: give the model the phase of this oscillation, computed from the physics, as an input</li>
+<li><strong>Particles:</strong> the electron cloud shrinks and grows by a factor of up to 5,000 along the accelerator, which makes bigger models unstable to train. Next: rescale the cloud at each position separately, then train a larger model to close the gap to perfect (1.44 → 1)</li>
+<li><strong>Real-time diagnostics:</strong> ~1 ms per prediction: fast enough to run beside the experiment and read the settings back from a measured bunch</li>
+</ul>
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions</h2>
