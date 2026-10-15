@@ -25,7 +25,6 @@ execute:
   warning: false
   message: false
 ---
-Something
 {{< include sections/_01-why-surrogates.md >}}
 
 {{< include sections/_02-pallas-overview.md >}}
