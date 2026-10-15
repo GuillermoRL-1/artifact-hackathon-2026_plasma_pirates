@@ -1,6 +1,8 @@
 ## Case study: TrajectoryB
 
-TrajectoryB predicts the evolution of key beam properties along the plasma from the simulation settings and the longitudinal position. We modelled it with four neural-network architectures:
+_TrajectoryB_ predicts the evolution of the beam parameters along the longitudinal direction for various settings.
+
+The case was modelled using four different neural-network architectures:
 
 ::: {.cards .arch-cards}
 
