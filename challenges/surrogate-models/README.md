@@ -91,6 +91,23 @@ is its Streamlit entry point: Hopsworks clones this repository's `master` and re
 on every push, reads the registry with the app's own session and the W&B key from the Hopsworks
 secret `WANDB_API_KEY`, and the page refreshes itself every 2 minutes.
 
+## Feature explorer app
+
+`app.py` is the GitHub-visible Streamlit entry point for the interactive feature-store explorer.
+It launches `feature_target_explorer.py`, which reads the selected feature group from Hopsworks
+and displays statistics, correlations, distributions, trajectories, and candidate outliers.
+
+Run it locally with:
+
+```bash
+.venv/bin/streamlit run app.py
+```
+
+For a Hopsworks App, create a Streamlit app from this Git repository and set the entrypoint to
+`app.py`. Configure `HOPSWORKS_HOST` and `HOPSWORKS_API_KEY` as app environment variables or
+secrets; never commit the API key. For Streamlit Community Cloud, select `app.py` as the main
+file and add the same two values under **App settings → Secrets**.
+
 ## Getting help
 
 Reach out to the case holder or challenge coordinator listed above, or ask during the Tuesday
