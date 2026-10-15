@@ -129,11 +129,19 @@ $line: rgba(165, 243, 252, 0.22);
 .video-stage {
   position: relative;
   width: min(90vw, 80rem);
+  height: 55vh;
+  max-height: calc(100vh - 10em);
   max-width: none;
   margin-left: 0;
   margin-right: auto;
 }
 .video-stage .video-frame { pointer-events: none; }
+.video-stage .kaldera-player {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+}
 .video-stage .video-callout {
   position: absolute;
   right: 1.5em;
@@ -205,6 +213,39 @@ $line: rgba(165, 243, 252, 0.22);
 .closing-title { font-size: 1.8em; color: $fuchsia-soft; font-weight: 750; }
 .closing-slide p { color: $cyan-soft; }
 .small { color: $muted; font-size: 0.52em; }
+.questions-slide { position: relative; }
+.questions-stage {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  border: 1px solid $line;
+  border-radius: 0.35em;
+  background: $navy-light;
+}
+.questions-stage > p {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+.questions-stage img:first-of-type {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  max-width: none;
+  object-fit: cover;
+}
+.questions-copy {
+  position: absolute;
+  left: 1.2em;
+  bottom: 1.1em;
+  max-width: 55%;
+  padding: 0.8em 1em;
+  border-left: 0.2em solid $fuchsia;
+  background: rgba(8, 18, 30, 0.78);
+  text-align: left;
+}
+.questions-copy .closing-title { font-size: 1.45em; }
 
 .reveal .slide-number { color: $muted; background: transparent; }
 .reveal .progress { color: $cyan; height: 3px; }
