@@ -61,6 +61,6 @@ execute:
 
 {{< include sections/_18-results.md >}}
 
-{{< include sections/_19-takeaways.md >}}
+{{< include sections/_19a-summary-next.md >}}
 
 {{< include sections/_20-questions.md >}}
