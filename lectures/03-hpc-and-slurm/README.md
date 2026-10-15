@@ -15,7 +15,7 @@
 
 * **Step 3:** Open a web browser on your machine, and type the following URL, but **change `INSERT_YOUR_NAME_HERE` beforehand into whatever your want (make it unique!)**:
   ```
-  http://127.0.0.1:8891/lab/workspaces/INSERT_YOUR_NAME_HERE?token=f0cd505f14117b5405648280c9955d706d7f145daf0b87e4
+  http://127.0.0.1:8891/lab/workspaces/INSERT_YOUR_NAME_HERE?token=bd6ffca7222a0f7fccf8031e2dd745e754d2ae2b7b291e6d
   ```
 * **Step 4:** Navigate to any folder you want on DALIA, starting from `/workspace` which leads to the root `/` of DALIA. For example, the Hackathon shared folder can be reached via:
   ```
