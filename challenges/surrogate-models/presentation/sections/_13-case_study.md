@@ -1,47 +1,30 @@
 ## Case study: TrajectoryB
 
-TrajectoryB predicts the evolution of key beam properties along the plasma trajectory from the simulation settings and longitudinal position.
+TrajectoryB predicts the evolution of key beam properties along the plasma from the simulation settings and the longitudinal position. We modelled it with four neural-network architectures:
 
-The case was modelled using three different neural-network architectures:
-
-::: {.cards}
+::: {.cards .arch-cards}
 
 ::: {.model-card}
-
-<div class="card-title">Multilayer Perceptron</div>
-
-4 $\times$ 256 neurons.
-
-<!-- ![](data/MLP.png){width=50%}: add the image to presentation/data/ -->
-
+<div class="card-title">Multilayer Perceptron <span class="arch-score"></span></div>
+<div class="arch" data-arch="mlp"></div>
 :::
 
 ::: {.model-card}
-
-<div class="card-title">DLinear</div>
-
-Trend + Seasonal decomposition, linear projection
-
+<div class="card-title">Bayesian Neural Network <span class="arch-score"></span></div>
+<div class="arch" data-arch="bnn"></div>
 :::
 
 ::: {.model-card}
-
-<div class="card-title">Bayesian Neural Network</div>
-
-4 $\times$ 256 neurons, SiLU, 5% dropout
-
-<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
-
+<div class="card-title">DLinear <span class="arch-score"></span></div>
+<div class="arch" data-arch="dlinear"></div>
 :::
 
 ::: {.model-card}
-
-<div class="card-title">Residual Mixture Density Network</div>
-
-Residual-based MLP, 4 $\times$ 256 neurons
-
-<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
-
+<div class="card-title">Residual Mixture Density Network <span class="arch-score"></span></div>
+<div class="arch" data-arch="mdn"></div>
+:::
 :::
 
+::: {.notes}
+Diagrams drawn from the code each model carries in the registry: grl_trajectory_torch_mlp v1, hg_trajectory_dlinear_trajectory v1, sj_trajectory_bayesian_nn v5 and kkim_trajectory_hybrid_residual_mdn v1. The MLP and the BNN predict one position at a time; DLinear writes the whole 113-point curve from the settings alone. The BNN and the MDN also give an uncertainty: the BNN from dropout kept on at prediction, the MDN from a mixture of Gaussians fitted to the anchor MLP's residuals.
 :::

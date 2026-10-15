@@ -520,3 +520,11 @@ $line: rgba(165, 243, 252, 0.22);
   display: block; width: 100%; height: 17.4em; max-width: none; max-height: none;
   border: 1px solid $line; border-radius: 0.35em; background: $navy;
 }
+
+/* Case study: architecture diagrams (architectures.js) */
+.arch-cards { gap: 0.45em; margin-top: 0.3em; }
+.arch-cards .model-card { min-height: 0; padding: 0.55em 0.7em 0.45em; font-size: 0.68em; }
+.arch-cards .card-title { display: flex; align-items: baseline; gap: 0.6em; font-size: 1em; margin-bottom: 0.4em; }
+.arch-score { margin-left: auto; color: $amber; font-size: 0.72em; font-weight: 600; white-space: nowrap; }
+.arch svg { display: block; width: 100%; height: auto; }
+.reveal .arch p.arch-foot { color: $muted; font-size: 0.68em; line-height: 1.3; margin: 0.4em 0 0; }

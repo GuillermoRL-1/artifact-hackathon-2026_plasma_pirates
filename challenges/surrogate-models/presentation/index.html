@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-d7e4ce255c4be796034dcd44c7a08f02.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-47f5712f28517124f43e7ab994b7c4c7.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -669,37 +669,54 @@ Hand-in manifest
 </section>
 <section id="case-study-trajectoryb" class="slide level2">
 <h2>Case study: TrajectoryB</h2>
-<p>TrajectoryB predicts the evolution of key beam properties along the plasma trajectory from the simulation settings and longitudinal position.</p>
-<p>The case was modelled using three different neural-network architectures:</p>
-<div class="cards">
+<p>TrajectoryB predicts the evolution of key beam properties along the plasma from the simulation settings and the longitudinal position. We modelled it with four neural-network architectures:</p>
+<div class="cards arch-cards">
 <div class="model-card">
 <div class="card-title">
-Multilayer Perceptron
+Multilayer Perceptron <span class="arch-score"></span>
 </div>
-<p>4 <span class="math inline">\(\times\)</span> 256 neurons.</p>
-<!-- ![](data/MLP.png){width=50%}: add the image to presentation/data/ -->
+<div class="arch" data-arch="mlp">
+
 </div>
-<div class="model-card">
-<div class="card-title">
-DLinear
-</div>
-<p>Trend + Seasonal decomposition, linear projection</p>
 </div>
 <div class="model-card">
 <div class="card-title">
-Bayesian Neural Network
+Bayesian Neural Network <span class="arch-score"></span>
 </div>
-<p>4 <span class="math inline">\(\times\)</span> 256 neurons, SiLU, 5% dropout</p>
-<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
+<div class="arch" data-arch="bnn">
+
+</div>
 </div>
 <div class="model-card">
 <div class="card-title">
-Residual Mixture Density Network
+DLinear <span class="arch-score"></span>
 </div>
-<p>Residual-based MLP, 4 <span class="math inline">\(\times\)</span> 256 neurons</p>
-<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
+<div class="arch" data-arch="dlinear">
+
 </div>
 </div>
+<div class="model-card">
+<div class="card-title">
+Residual Mixture Density Network <span class="arch-score"></span>
+</div>
+<div class="arch" data-arch="mdn">
+
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Diagrams drawn from the code each model carries in the registry: grl_trajectory_torch_mlp v1, hg_trajectory_dlinear_trajectory v1, sj_trajectory_bayesian_nn v5 and kkim_trajectory_hybrid_residual_mdn v1. The MLP and the BNN predict one position at a time; DLinear writes the whole 113-point curve from the settings alone. The BNN and the MDN also give an uncertainty: the BNN from dropout kept on at prediction, the MDN from a mixture of Gaussians fitted to the anchor MLP’s residuals.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="traj-explainability" class="slide level2">
 <h2>Trajectory · what the model listens to</h2>
@@ -1224,6 +1241,7 @@ Plasma Pirates
     <script src="kaldera.js"></script>
     <script src="data/trajectory_snapshot.js"></script>
     <script src="trajectory.js"></script>
+    <script src="architectures.js"></script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

@@ -91,6 +91,13 @@ other pages, hence the static copy).
 ../../../.venv/bin/python presentation/build_explorer_report.py
 ```
 
+## Architecture diagrams
+
+The architecture diagrams of the case-study slide (`sections/_13-case_study.md`) are
+drawn by `architectures.js`, from a spec written by hand after the code each model
+carries in the registry (`torch_mlp.py`, `dlinear_trajectory.py`, `bayesian_nn.py`,
+`kkim_hybrid_multicase.py`). The holdout R² badges come from `data/pipeline_snapshot.js`.
+
 ## Rebuild the trajectory data
 
 The trajectory slides (`sections/_18a` to `_18c`) draw with `trajectory.js` from
