@@ -12,14 +12,15 @@ import streamlit as st
 
 def _load_streamlit_secrets() -> None:
     """Expose Hopsworks secrets through the environment used by the pipeline."""
+    # Without a secrets.toml (inside Hopsworks, or locally with a .env) reading st.secrets
+    # raises; pallas_pipeline.connect() then uses the .env or the Hopsworks session.
     try:
         secrets = st.secrets
-    except FileNotFoundError:
-        # Local Hopsworks runs normally use environment variables or .env.
+        for name in ("HOPSWORKS_HOST", "HOPSWORKS_API_KEY"):
+            if not os.environ.get(name) and name in secrets:
+                os.environ[name] = str(secrets[name])
+    except Exception:
         return
-    for name in ("HOPSWORKS_HOST", "HOPSWORKS_API_KEY"):
-        if not os.environ.get(name) and name in secrets:
-            os.environ[name] = str(secrets[name])
 
 
 _load_streamlit_secrets()

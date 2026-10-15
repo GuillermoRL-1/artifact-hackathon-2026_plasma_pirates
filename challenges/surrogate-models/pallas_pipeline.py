@@ -102,10 +102,16 @@ CASES = {
 # ---- 1. Feature store -------------------------------------------------------------------------
 
 def connect(project=PROJECT):
-    """Log in with HOPSWORKS_HOST / HOPSWORKS_API_KEY from the environment or the nearest .env."""
+    """Log in with HOPSWORKS_HOST / HOPSWORKS_API_KEY from the environment or the nearest .env.
+
+    Without a key (inside Hopsworks, e.g. an app or a job) the session's own client logs in,
+    to the project it runs in.
+    """
     import hopsworks
     from team_wandb import load_env
     load_env()
+    if not os.environ.get("HOPSWORKS_API_KEY"):
+        return hopsworks.login()
     return hopsworks.login(host=os.environ["HOPSWORKS_HOST"], project=project,
                            api_key_value=os.environ["HOPSWORKS_API_KEY"])
 
