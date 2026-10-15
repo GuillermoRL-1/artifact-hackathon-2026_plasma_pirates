@@ -14,6 +14,7 @@ challenge folder (or anywhere) with the team .env available:
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import sys
 from datetime import datetime
@@ -52,6 +53,34 @@ def feature_groups(fs) -> list[dict]:
         out.append({"name": name, "description": fg.description or "",
                     "rows": int(len(configs)), "configs": int(configs.nunique()),
                     "columns": [{"name": f.name, "type": f.type} for f in fg.features]})
+    return out
+
+
+def row_filter(case) -> str:
+    """The case's row filter as written in pallas_pipeline.CASES, e.g. "injected == True"."""
+    if case.rows is None:
+        return ""
+    source = inspect.getsource(case.rows).split("lambda fg:", 1)[1].split("#", 1)[0]
+    source = source.strip().rstrip(",").strip()
+    while source.count(")") > source.count("("):
+        source = source[:-1].rstrip()
+    return source.replace("fg.", "").replace("(", "").replace(")", "")
+
+
+def cases(fs) -> list[dict]:
+    """What each objective reads: its feature group, row filter, inputs, targets and row count."""
+    out = []
+    for name, case in pp.CASES.items():
+        fg = fs.get_feature_group(case.feature_group, version=1)
+        query = fg.select(["config"])
+        if case.rows is not None:
+            query = query.filter(case.rows(fg))
+        configs = query.read()["config"]
+        out.append({"name": name, "feature_group": case.feature_group,
+                    "inputs": [pp.fs_name(c) for c in case.inputs],
+                    "targets": [pp.fs_name(c) for c in case.targets],
+                    "ids": [pp.fs_name(c) for c in case.ids], "filter": row_filter(case),
+                    "rows": int(len(configs)), "configs": int(configs.nunique())})
     return out
 
 
@@ -135,6 +164,7 @@ def main() -> None:
         "wandb": {"entity": ENTITY, "project": WANDB_PROJECT, "group": GROUP,
                   "url": f"https://wandb.ai/{ENTITY}/{WANDB_PROJECT}"},
         "feature_groups": feature_groups(fs),
+        "cases": cases(fs),
         "split": trajectory_split(fs),
         "hpo": hpo_study(),
         "references": references(),

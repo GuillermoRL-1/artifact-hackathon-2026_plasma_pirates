@@ -96,31 +96,66 @@
   };
 
   // ---- 1 · feature groups (HTML) ------------------------------------------------------------
+  // A case picks a feature group, filters its rows and reads some columns as inputs, some as
+  // targets: the tiles, the lineage strip and the coloured columns all follow the chosen case.
+  const CASE_LABEL = {trajectory: 'Trajectory', direct_B: 'Direct B', inverse_A: 'Inverse A',
+                      inverse_B: 'Inverse B'};
   function fgExplorer(el) {
     const groups = P.feature_groups;
-    let selected = el.dataset.view || 'pallas_b_trajectories';
-    const draw = () => {
-      const g = groups.find((x) => x.name === selected) || groups[0];
-      el.innerHTML = `
-        <div class="fg-tiles">${groups.map((x) => `
-          <button class="fg-tile${x.name === g.name ? ' active' : ''}" data-fg="${esc(x.name)}">
-            <span class="fg-name">${esc(x.name)}</span>
-            <span class="fg-num">${fmt(x.rows)}</span>
-            <span class="fg-sub">rows · ${fmt(x.configs)} configs · ${x.columns.length} cols</span>
-          </button>`).join('')}
+    const cases = P.cases || [];
+    const c = cases.find((x) => x.name === el.dataset.view) || cases[0];
+    if (!c) return;
+    const g = groups.find((x) => x.name === c.feature_group);
+    const usedBy = (name) => cases.filter((x) => x.feature_group === name);
+    const role = (col) => (c.ids.includes(col) ? 'id' : c.inputs.includes(col) ? 'input'
+      : c.targets.includes(col) ? 'target' : 'unused');
+    const order = {id: 0, input: 1, target: 2, unused: 3};
+    const columns = [...g.columns].sort((a, b) => order[role(a.name)] - order[role(b.name)]);
+    const twin = usedBy(g.name).find((x) => x.name !== c.name);
+    const dropped = g.rows - c.rows;
+    el.innerHTML = `
+      <div class="fg-tiles">${groups.map((x) => {
+        const users = usedBy(x.name);
+        return `
+        <button class="fg-tile${x.name === g.name ? ' active' : ''}${users.length ? '' : ' idle'}"
+                data-case="${esc(users[0]?.name || '')}"${users.length ? '' : ' disabled'}>
+          <span class="fg-name">${esc(x.name)}</span>
+          <span class="fg-num">${fmt(x.rows)}</span>
+          <span class="fg-sub">rows · ${x.columns.length} columns</span>
+          <span class="fg-use">${users.length ? users.map((u) => CASE_LABEL[u.name]).join(' · ')
+                                             : 'no case reads it'}</span>
+        </button>`;
+      }).join('')}
+      </div>
+      <div class="fg-lineage">
+        <div class="lin-step"><span class="lin-k">feature group</span>
+          <b>${fmt(g.rows)} rows</b><span>${fmt(g.configs)} simulations</span></div>
+        <span class="lin-arrow">→</span>
+        <div class="lin-step"><span class="lin-k">row filter</span>
+          <b>${esc(c.filter || 'none')}</b>
+          <span>${dropped ? `${fmt(dropped)} rows left out` : 'every row'}</span></div>
+        <span class="lin-arrow">→</span>
+        <div class="lin-step lin-fv"><span class="lin-k">feature view</span>
+          <b>${esc(c.name)}_fv</b><span>owner prefix · versioned</span></div>
+        <span class="lin-arrow">→</span>
+        <div class="lin-step lin-out"><span class="lin-k">training rows</span>
+          <b>${fmt(c.rows)}</b><span>${c.inputs.length} inputs → ${c.targets.length} targets</span></div>
+      </div>
+      <div class="fg-detail">
+        <div class="fg-legend"><span class="role-id">id</span><span class="role-input">input</span>
+          <span class="role-target">target</span><span class="role-unused">not read</span>
+          ${twin ? `<em>Same rows as ${CASE_LABEL[twin.name]}, with inputs and targets swapped.</em>` : ''}
         </div>
-        <div class="fg-detail">
-          <p>${esc(short(g.description, 170))}</p>
-          <div class="chips">${g.columns.map((c) => `
-            <span class="chip" title="${esc(c.type)}">${esc(c.name)}</span>`).join('')}
-          </div>
-        </div>`;
-      el.querySelectorAll('.fg-tile').forEach((b) => b.addEventListener('click', () => {
-        selected = b.dataset.fg;
-        draw();
-      }));
-    };
-    draw();
+        <div class="chips">${columns.map((col) => `
+          <span class="chip role-${role(col.name)}" title="${esc(col.type)}">${esc(col.name)}</span>`).join('')}
+        </div>
+      </div>`;
+    el.querySelectorAll('.fg-tile[data-case]').forEach((tile) => tile.addEventListener('click', () => {
+      const button = document.querySelector(
+        `.viz-switch[data-for="${el.id}"] button[data-view="${tile.dataset.case}"]`);
+      if (button) button.click();
+      else { el.dataset.view = tile.dataset.case; fgExplorer(el); }
+    }));
   }
 
   // ---- 2 · split and normalisation ----------------------------------------------------------

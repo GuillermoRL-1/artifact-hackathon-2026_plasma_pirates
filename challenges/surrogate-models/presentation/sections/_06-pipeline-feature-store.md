@@ -1,36 +1,36 @@
 ## 1 · Pull the data from the feature store {#pipe-feature-store}
 
 ::: {.columns}
-::: {.column width="57%"}
+::: {.column width="60%"}
 
-<div class="viz-html" data-viz="fg-explorer"></div>
+<div class="viz-switch" data-for="fg-explorer"><button class="active" data-view="trajectory">Trajectory</button><button data-view="direct_B">Direct B</button><button data-view="inverse_B">Inverse B</button><button data-view="inverse_A">Inverse A</button></div>
 
-::: {.caption}
-The four feature groups of the public pack in the team project. Click one to see its columns; hover a column for its type.
-:::
+<div id="fg-explorer" class="viz-html" data-viz="fg-explorer" data-view="trajectory"></div>
 
 :::
-::: {.column width="40%"}
+::: {.column width="38%"}
 
 ```python
 project = pp.connect(pp.PROJECT)
 fs = project.get_feature_store()
 
-case = pp.CASES[CASE]   # inputs, targets, rows
+case = pp.CASES[CASE]
 fv = pp.get_feature_view(
     fs, f"{OWNER}_{CASE}_fv", FV_VERSION)
 rows = pp.read_rows(fv, case)
 ```
 
 ::: {.compact}
-- The **case** fixes the feature group, inputs, targets and row filter (e.g. injected bunches only).
-- Nobody exports a CSV by hand: every experiment starts from the same versioned data.
-- One row per simulation, per position for the trajectories.
+- **One name per objective.** The case fixes the feature group, the row filter, the inputs and the targets.
+- **A versioned feature view.** Every experiment and every teammate reads exactly the same rows.
+- **No CSV exported by hand.** The views read the groups in place, so Inverse B is simply Direct B's rows read the other way round.
 :::
-
-![](index_files/images/Screenshot 2026-10-14 at 10.11.57.png){.lightbox .thumb fig-alt="PALLAS Data Explorer showing the trajectory feature group and candidate outliers"}
 
 <a class="ext-link" data-link="hopsworks" target="_blank" rel="noopener">Open the project in Hopsworks ↗</a>
 
 :::
+:::
+
+::: {.notes}
+Pick a case: the tile shows the feature group it reads, the strip how the rows get from the group to training, and the columns are coloured by what the case does with them. The trajectories come one row per position; the campaigns one row per simulation. pallas_b_moments was published too but no objective reads it.
 :::

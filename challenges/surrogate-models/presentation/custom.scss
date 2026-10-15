@@ -295,19 +295,47 @@ $line: rgba(165, 243, 252, 0.22);
 .viz-table th { color: $muted; font-weight: 500; text-align: left; border-bottom: 1px solid $line; padding: 0.35em 0.4em; }
 .viz-table td { border-bottom: 1px solid rgba(165, 243, 252, 0.08); padding: 0.4em; }
 
-.fg-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45em; }
+.fg-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4em; margin-top: 0.35em; }
 .fg-tile {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; cursor: pointer;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.08em; cursor: pointer;
   font: inherit; text-align: left; color: $ink; background: $navy-light;
-  border: 1px solid $line; border-radius: 0.3em; padding: 0.5em 0.7em;
+  border: 1px solid $line; border-radius: 0.3em; padding: 0.5em 0.6em;
 }
 .fg-tile:hover { border-color: $cyan; }
 .fg-tile.active { border-color: $fuchsia; box-shadow: 0 0 1em rgba(232, 121, 249, 0.15); }
-.fg-name { color: $cyan-soft; font-size: 0.42em; font-family: ui-monospace, monospace; }
+.fg-tile.idle { cursor: default; opacity: 0.45; }
+.fg-tile.idle:hover { border-color: $line; }
+.fg-name { color: $cyan-soft; font-size: 0.4em; font-family: ui-monospace, monospace; }
 .fg-num { color: white; font-size: 0.95em; font-weight: 750; letter-spacing: -0.02em; }
 .fg-sub { color: $muted; font-size: 0.38em; }
-.fg-detail { margin-top: 0.55em; }
-.fg-detail p { color: $muted; font-size: 0.42em; margin: 0 0 0.4em; }
+.fg-use { color: $fuchsia-soft; font-size: 0.38em; margin-top: 0.25em; }
+.fg-tile:not(.active) .fg-use { color: $muted; }
+.fg-lineage { display: flex; align-items: stretch; gap: 0.3em; margin-top: 0.7em; }
+.lin-step {
+  flex: 1; display: flex; flex-direction: column; gap: 0.1em; min-width: 0;
+  border: 1px dashed $line; border-radius: 0.3em; padding: 0.5em 0.6em;
+}
+.lin-step .lin-k { color: $muted; font-size: 0.34em; text-transform: uppercase; letter-spacing: 0.08em; }
+.lin-step b { color: white; font-size: 0.48em; font-family: ui-monospace, monospace; font-weight: 600; overflow-wrap: anywhere; }
+.lin-step span:last-child { color: $muted; font-size: 0.38em; }
+.lin-fv { border-style: solid; border-color: $fuchsia; }
+.lin-out { border-style: solid; border-color: $cyan; background: rgba(34, 211, 238, 0.08); }
+.lin-out b { color: $cyan; font-family: inherit; font-size: 0.85em; font-weight: 750; }
+.lin-arrow { align-self: center; color: $muted; font-size: 0.5em; }
+.fg-detail { margin-top: 0.8em; }
+.fg-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 0.9em; font-size: 0.4em; color: $muted; margin-bottom: 0.45em; }
+.fg-legend span::before { content: ""; display: inline-block; width: 0.75em; height: 0.75em; border-radius: 50%; margin-right: 0.35em; vertical-align: -0.05em; border: 1px solid currentColor; }
+.fg-legend em { color: $fuchsia-soft; font-style: normal; margin-left: auto; }
+.role-id { color: white; }
+.role-input { color: $cyan; }
+.role-target { color: $amber; }
+.role-unused { color: $muted; }
+.fg-legend .role-id::before, .fg-legend .role-input::before, .fg-legend .role-target::before { background: currentColor; }
+.chip.role-id { color: white; border-color: rgba(255, 255, 255, 0.5); }
+.chip.role-input { color: $navy; background: $cyan; border-color: $cyan; font-weight: 600; }
+.chip.role-target { color: $navy; background: $amber; border-color: $amber; font-weight: 600; }
+.chip.role-unused { opacity: 0.45; }
+#fg-explorer .chip { font-size: 0.42em; }
 .chips { display: flex; flex-wrap: wrap; gap: 0.25em; }
 .chip {
   font-size: 0.38em; font-family: ui-monospace, monospace; color: $cyan-soft;

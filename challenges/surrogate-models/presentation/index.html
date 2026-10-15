@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ad22f4346667784e3a0a306b16f8fe2f.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-01a183123d1b3a64149acb081baffd3b.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -356,31 +356,54 @@ Inverse B
 <section id="pipe-feature-store" class="slide level2">
 <h2>1 · Pull the data from the feature store</h2>
 <div class="columns">
-<div class="column" style="width:57%;">
-<div class="viz-html" data-viz="fg-explorer">
+<div class="column" style="width:60%;">
+<div class="viz-switch" data-for="fg-explorer">
+<button class="active" data-view="trajectory">
+Trajectory
+</button>
+<button data-view="direct_B">
+Direct B
+</button>
+<button data-view="inverse_B">
+Inverse B
+</button>
+<button data-view="inverse_A">
+Inverse A
+</button>
+</div>
+<div id="fg-explorer" class="viz-html" data-viz="fg-explorer" data-view="trajectory">
 
 </div>
-<div class="caption">
-<p>The four feature groups of the public pack in the team project. Click one to see its columns; hover a column for its type.</p>
-</div>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:38%;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-label="1"></a>project <span class="op">=</span> pp.<span class="ex">connect</span>(pp.PROJECT)</span>
 <span id="cb1-2"><a href="" aria-label="2"></a>fs <span class="op">=</span> project.get_feature_store()</span>
 <span id="cb1-3"><a href="" aria-label="3"></a></span>
-<span id="cb1-4"><a href="" aria-label="4"></a>case <span class="op">=</span> pp.CASES[CASE]   <span class="co"># inputs, targets, rows</span></span>
+<span id="cb1-4"><a href="" aria-label="4"></a>case <span class="op">=</span> pp.CASES[CASE]</span>
 <span id="cb1-5"><a href="" aria-label="5"></a>fv <span class="op">=</span> pp.get_feature_view(</span>
 <span id="cb1-6"><a href="" aria-label="6"></a>    fs, <span class="ss">f"</span><span class="sc">{</span>OWNER<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>CASE<span class="sc">}</span><span class="ss">_fv"</span>, FV_VERSION)</span>
 <span id="cb1-7"><a href="" aria-label="7"></a>rows <span class="op">=</span> pp.read_rows(fv, case)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="compact">
 <ul>
-<li>The <strong>case</strong> fixes the feature group, inputs, targets and row filter (e.g.&nbsp;injected bunches only).</li>
-<li>Nobody exports a CSV by hand: every experiment starts from the same versioned data.</li>
-<li>One row per simulation, per position for the trajectories.</li>
+<li><strong>One name per objective.</strong> The case fixes the feature group, the row filter, the inputs and the targets.</li>
+<li><strong>A versioned feature view.</strong> Every experiment and every teammate reads exactly the same rows.</li>
+<li><strong>No CSV exported by hand.</strong> The views read the groups in place, so Inverse B is simply Direct B’s rows read the other way round.</li>
 </ul>
 </div>
-<p><a href="index_files/images/Screenshot%202026-10-14%20at%2010.11.57.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="index_files/images/Screenshot%202026-10-14%20at%2010.11.57.png" class="thumb" alt="PALLAS Data Explorer showing the trajectory feature group and candidate outliers"></a></p>
 <p><a class="ext-link" data-link="hopsworks" target="_blank" rel="noopener" href="">Open the project in Hopsworks ↗</a></p>
 </div></div>
+<aside class="notes">
+<p>Pick a case: the tile shows the feature group it reads, the strip how the rows get from the group to training, and the columns are coloured by what the case does with them. The trajectories come one row per position; the campaigns one row per simulation. pallas_b_moments was published too but no objective reads it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="pipe-transformations" class="slide level2">
 <h2>2 · Transformations that travel with the data</h2>
@@ -499,7 +522,7 @@ sj_trajectory_bayesian_nn <em>v5</em>
 <code>model_meta.json</code><span>provenance</span>
 </li>
 </ul>
-<p><a href="index_files/images/Screenshot%202026-10-15%20at%2010.02.13.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="index_files/images/Screenshot%202026-10-15%20at%2010.02.13.png" class="lineage" alt="Hopsworks provenance graph linking a feature group, feature view, training dataset, and registered model"></a></p>
+<p><a href="index_files/images/Screenshot%202026-10-15%20at%2010.02.13.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="index_files/images/Screenshot%202026-10-15%20at%2010.02.13.png" class="lineage" alt="Hopsworks provenance graph linking a feature group, feature view, training dataset, and registered model"></a></p>
 <div class="caption">
 <p>Each version is linked to its feature view and training dataset, so anyone can load it and reproduce the exact inputs.</p>
 </div>
