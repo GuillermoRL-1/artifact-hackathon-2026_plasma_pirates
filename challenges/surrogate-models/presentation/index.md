@@ -27,7 +27,7 @@ execute:
 ---
 {{< include sections/_01-why-surrogates.md >}}
 
-{{< include sections/_02-kaldera-animation.md >}}
+[comment]: <> ({{< include sections/_02-kaldera-animation.md >}})
 
 {{< include sections/_02-pallas-overview.md >}}
 
@@ -51,20 +51,20 @@ execute:
 
 {{< include sections/_12-pipeline-handin.md >}}
 
-{{< include sections/_13-modelling-directions.md >}}
+[comment]: <> ({{< include sections/_13-modelling-directions.md >}})
 
-{{< include sections/_14-data-quality.md >}}
+[comment]: <> ({{< include sections/_14-data-quality.md >}})
 
-{{< include sections/_15-trajectory-outliers.md >}}
+[comment]: <> ({{< include sections/_16-plotly-scatter.md >}})
 
-{{< include sections/_16-plotly-scatter.md >}}
+[comment]: <> ({{< include sections/_17-model-experiments.md >}})
 
-{{< include sections/_17-model-experiments.md >}}
+[comment]: <> ({{< include sections/_18-results.md >}})
 
-{{< include sections/_18-results.md >}}
-
-{{< include sections/_19-takeaways.md >}}
+[comment]: <> ({{< include sections/_19-takeaways.md >}})
 
 {{< include sections/_19a-summary-next.md >}}
 
 {{< include sections/_20-questions.md >}}
+
+{{< include sections/_15-trajectory-outliers.md >}}

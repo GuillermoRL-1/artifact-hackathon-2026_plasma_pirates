@@ -6,6 +6,3 @@
      alt="Darkened PALLAS accelerator overview">
 :::
 
-::: {.caption}
-PALLAS accelerator overview.
-:::

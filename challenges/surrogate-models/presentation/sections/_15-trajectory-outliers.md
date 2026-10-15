@@ -1,4 +1,4 @@
-## Identifying possible outliers in trajectories
+## Bonus: Identifying possible outliers in trajectories
 
 ::: {.columns}
 ::: {.column width="58%"}

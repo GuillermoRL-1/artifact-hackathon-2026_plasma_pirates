@@ -1,9 +1,9 @@
-// The KALDERA animation and its timeline slider (sections/_02), rebuilt from kaldera.desy.de:
+// The KALDERA animation and its timeline slider (sections/_01 and _02), rebuilt from kaldera.desy.de:
 // the same two full clips (25 fps, every frame a keyframe, so seeking is smooth while
 // streaming) and the same stage table, which maps the 0-3600 timeline to frames of each clip.
 (() => {
-  const player = document.querySelector('.kaldera-player');
-  if (!player || typeof Reveal === 'undefined') return;
+  const players = document.querySelectorAll('.kaldera-player');
+  if (!players.length || typeof Reveal === 'undefined') return;
 
   const FPS = 25;
   const CLIPS = {
@@ -24,6 +24,7 @@
   ];
   const END = 3600;
 
+  players.forEach((player) => {
   const video = player.querySelector('.kaldera-video');
   const slider = player.querySelector('.kaldera-slider');
   const playButton = player.querySelector('.kaldera-play');
@@ -127,7 +128,9 @@
     const there = Reveal.getIndices(slide).h;
     if (!video.src && here >= there - 1) load(clip);
     const present = Reveal.getCurrentSlide() === slide;
-    reveal.classList.toggle('on-kaldera', present);
+    if (slide.classList.contains('kaldera-slide')) {
+      reveal.classList.toggle('on-kaldera', present);
+    }
     if (present) {
       seekTimeline(0);
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -141,4 +144,5 @@
   Reveal.on('slidechanged', onSlide);
   if (Reveal.isReady()) onSlide();
   else Reveal.on('ready', onSlide);
+  });
 })();

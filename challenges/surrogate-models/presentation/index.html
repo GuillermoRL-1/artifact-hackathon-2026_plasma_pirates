@@ -6,7 +6,7 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-9cd1e7df46ebac34d90ec60234c0be48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="index_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-da8fe97b00025f52fb039ba394c259f6.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-fbbac860a176652075d894fce5b4beff.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -217,16 +217,6 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 <h2>Plasma-based electron accelerators</h2>
 <p>Simulations of PALLAS in SMILEI can guide experiments and provide physical insight, however runs are computationally intensive.</p>
 <div class="video-stage">
-<iframe class="video-frame video-feature video-primary" data-external="1" data-video-url="https://youtu.be/xH0mQ93MpMc" src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;loop=1&amp;playlist=xH0mQ93MpMc" data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;loop=1&amp;playlist=xH0mQ93MpMc" title="PALLAS simulation video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
-</iframe>
-<div class="accent-card fragment fade-up video-callout">
-<p><strong>Central idea</strong></p>
-<p>Replace repeated high-fidelity simulation (1000s core-hours) runs with a fast, validated approximation (millisecond per run).</p>
-</div>
-</div>
-</section>
-<section id="kaldera-animation" class="slide level2 kaldera-slide">
-<h2>Laser-plasma acceleration</h2>
 <div class="kaldera-player" data-clip="micro">
 <video class="kaldera-video" data-external="1" muted="" playsinline="" preload="auto" aria-label="Laser-plasma accelerator animation (KALDERA, DESY)">
 </video>
@@ -241,6 +231,11 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 </div>
 <button type="button" class="kaldera-clip" aria-label="Switch between the plasma and the machine view" title="Plasma / machine view">
 </button>
+</div>
+</div>
+<div class="accent-card fragment fade-up video-callout">
+<p><strong>Central idea</strong></p>
+<p>Replace repeated high-fidelity simulation (1000s core-hours) runs with a fast, validated approximation (millisecond per run).</p>
 </div>
 </div>
 <aside class="notes">
@@ -261,9 +256,6 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 <h2>Plasma Pirates</h2>
 <div class="image-stage">
 <p><img src="index_files/images/original.png" alt="PALLAS accelerator overview"> <img class="fragment slide-in image-overlay" src="index_files/images/darken.png" alt="Darkened PALLAS accelerator overview"></p>
-</div>
-<div class="caption">
-<p>PALLAS accelerator overview.</p>
 </div>
 </section>
 <section id="from-simulation-to-surrogate" class="slide level2">
@@ -589,193 +581,6 @@ Hand-in manifest
 </div>
 </div></div>
 </section>
-<section id="four-modelling-directions" class="slide level2">
-<h2>Four modelling directions</h2>
-<div class="cards">
-<div class="model-card">
-<div class="card-title">
-Trialling trajectory
-</div>
-<p>Predict the evolution of a particle or bunch along the trajectory.</p>
-</div>
-<div class="model-card">
-<div class="card-title">
-Direct B
-</div>
-<p>Map simulation inputs to magnetic-field-related outputs.</p>
-</div>
-<div class="model-card">
-<div class="card-title">
-Inverse B
-</div>
-<p>Infer the inputs or settings required to obtain a desired field response.</p>
-</div>
-<div class="model-card">
-<div class="card-title">
-Inverse A
-</div>
-<p>Infer the accelerator or beam configuration from observed outcomes.</p>
-</div>
-</div>
-<div class="caption">
-<p>Confirm the final terminology and the exact input/target definitions for each case.</p>
-</div>
-</section>
-<section id="data-quality-is-part-of-the-model" class="slide level2">
-<h2>Data quality is part of the model</h2>
-<div class="columns">
-<div class="column" style="width:46%;">
-<h3 id="before-training">Before training</h3>
-<div class="check-list">
-<ul>
-<li>Statistical description of each feature and target</li>
-<li>Correlations and redundant parameters</li>
-<li>Missing values and invalid physical states</li>
-<li>Candidate outliers and anomalous rows</li>
-</ul>
-</div>
-</div><div class="column" style="width:48%;">
-<div class="placeholder tall">
-<p>Insert a correlation matrix, outlier comparison, or representative distribution.</p>
-</div>
-</div></div>
-</section>
-<section id="identifying-possible-outliers-in-trajectories" class="slide level2">
-<h2>Identifying possible outliers in trajectories</h2>
-<div class="columns">
-<div class="column" style="width:58%;">
-<iframe class="plotly-frame outlier-histogram-frame" src="data/trajectory_histograms.html" title="Interactive trajectory feature histograms" loading="lazy">
-</iframe>
-<div class="caption">
-<p>Static Hopsworks snapshot: use the dropdown to inspect one trajectory feature at a time.</p>
-</div>
-</div><div class="column" style="width:38%;">
-<h3 id="how-the-method-works">How the method works</h3>
-<p>For every numeric trajectory input and target, the explorer applies two complementary univariate tests:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-label="1"></a>q1, q3 <span class="op">=</span> values.quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
-<span id="cb5-2"><a href="" aria-label="2"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
-<span id="cb5-3"><a href="" aria-label="3"></a>iqr_flag <span class="op">=</span> (values <span class="op">&lt;</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr) <span class="op">|</span> <span class="op">\</span></span>
-<span id="cb5-4"><a href="" aria-label="4"></a>           (values <span class="op">&gt;</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr)</span>
-<span id="cb5-5"><a href="" aria-label="5"></a></span>
-<span id="cb5-6"><a href="" aria-label="6"></a>median <span class="op">=</span> values.median()</span>
-<span id="cb5-7"><a href="" aria-label="7"></a>MAD <span class="op">=</span> <span class="bu">abs</span>(values <span class="op">-</span> median).median()</span>
-<span id="cb5-8"><a href="" aria-label="8"></a>robust_z <span class="op">=</span> <span class="bu">abs</span>(values <span class="op">-</span> median) <span class="op">/</span> (<span class="fl">1.4826</span> <span class="op">*</span> MAD)</span>
-<span id="cb5-9"><a href="" aria-label="9"></a>robust_flag <span class="op">=</span> robust_z <span class="op">&gt;</span> <span class="fl">3.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The two flags are combined with an <strong>OR</strong>. A row becomes a candidate outlier when at least one selected feature is flagged. The method identifies candidates; it does not delete rows automatically.</p>
-</div></div>
-</section>
-<section id="an-interactive-plotly-scatter-plot" class="slide level2">
-<h2>An interactive Plotly scatter plot</h2>
-<div class="columns">
-<div class="column" style="width:68%;">
-<div id="dummy-scatter-plot" class="plotly-demo" aria-label="Interactive Plotly scatter plot of dummy PALLAS data">
-
-</div>
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script>
-  const dummyScatter = [
-    {
-      x: [5000, 5100, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900],
-      y: [61.2, 64.7, 68.1, 71.5, 75.0, 78.4, 81.9, 85.3, 88.8, 92.1, 95.7, 99.0, 102.6, 106.0, 109.4, 112.9, 116.2, 119.8, 123.1, 126.7],
-      text: ['1001','1002','1003','1004','1005','1006','1007','1008','1009','1010','1011','1012','1013','1014','1015','1016','1017','1018','1019','1020'],
-      name: 'Nominal', mode: 'markers', type: 'scatter', marker: {size: 10, color: '#22d3ee'}
-    },
-    {
-      x: [5150, 5750, 6350, 6850], y: [84.0, 143.0, 72.0, 171.0],
-      text: ['2001','2002','2003','2004'],
-      name: 'Candidate outlier', mode: 'markers', type: 'scatter', marker: {size: 13, color: '#e879f9', symbol: 'diamond'}
-    }
-  ];
-  Plotly.newPlot('dummy-scatter-plot', dummyScatter, {
-    title: 'Dummy trajectory population: E_MeV vs P_max',
-    xaxis: {title: 'P_max'}, yaxis: {title: 'E_MeV'},
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(13,27,42,0.75)',
-    font: {color: '#e6edf3'}, legend: {orientation: 'h'},
-    margin: {l: 60, r: 20, t: 55, b: 55}, height: 420
-  }, {responsive: true, displaylogo: false});
-</script>
-</div><div class="column" style="width:28%;">
-<h3 id="what-this-demonstrates">What this demonstrates</h3>
-<ul>
-<li>Hover over a point to inspect its configuration ID.</li>
-<li>Toggle populations from the legend.</li>
-<li>Compare a nominal trend with deliberately injected candidate outliers.</li>
-<li>Replace the inline arrays with data loaded from the real explorer output.</li>
-</ul>
-<p>Dummy source data: <a href="../data/dummy_scatter.csv">data/dummy_scatter.csv</a></p>
-<aside class="notes">
-<p>This example uses Plotly’s browser JavaScript bundle. The slide therefore remains interactive in HTML, but needs network access to load the CDN script unless Plotly is bundled locally.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div></div>
-</section>
-<section id="model-experiments" class="slide level2">
-<h2>Model experiments</h2>
-<div class="placeholder benchmark-placeholder">
-<p>Insert benchmark plot: linear baseline vs.&nbsp;<code>mlp_sklearn</code> vs.&nbsp;<code>torch_mlp</code>.</p>
-</div>
-<div class="caption">
-<p>Suggested annotations: case, train/test split, outlier policy, metric, and model registry version.</p>
-</div>
-</section>
-<section id="results" class="slide level2">
-<h2>Results</h2>
-<div class="columns">
-<div class="column" style="width:31%;">
-<div class="metric-card">
-<p><strong>Metric</strong></p>
-<p><code>[ value ]</code></p>
-<p>Name the primary score.</p>
-</div>
-</div><div class="column" style="width:31%;">
-<div class="metric-card">
-<p><strong>Speed-up</strong></p>
-<p><code>[ value ]</code></p>
-<p>Compare surrogate inference with simulation.</p>
-</div>
-</div><div class="column" style="width:31%;">
-<div class="metric-card">
-<p><strong>Best case</strong></p>
-<p><code>[ case / model ]</code></p>
-<p>Record the strongest result.</p>
-</div>
-</div></div>
-<div class="placeholder result-placeholder">
-<p>Add the principal result figure or prediction-vs-truth plot here.</p>
-</div>
-</section>
-<section id="takeaways-and-next-steps" class="slide level2">
-<h2>Takeaways and next steps</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="takeaways">Takeaways</h3>
-<div class="placeholder list-placeholder">
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-</ol>
-</div>
-</div><div class="column" style="width:44%;">
-<h3 id="next-steps">Next steps</h3>
-<div class="placeholder list-placeholder">
-<ul>
-<li>Validate on new simulation regimes</li>
-<li>Improve uncertainty estimates</li>
-<li>Connect models to the R&amp;D workflow</li>
-</ul>
-</div>
-</div></div>
-</section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <div class="columns">
@@ -803,7 +608,7 @@ Inverse A
 <li>Hard inverse problems sometimes need several answers: a mixture recovers dip_frac (0.08 → 0.80)</li>
 </ul>
 </section>
-<section id="next-steps-1" class="slide level2">
+<section id="next-steps" class="slide level2">
 <h2>Next steps</h2>
 <ul>
 <li><strong>Moments:</strong> the beam’s centre wiggles from side to side along the plasma (a betatron oscillation), and our models follow it only partly. Next: give the model the phase of this oscillation, computed from the physics, as an input</li>
@@ -813,15 +618,44 @@ Inverse A
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions</h2>
-<div class="closing-slide">
+<div class="questions-slide">
+<div class="questions-stage">
+<img src="index_files/images/DSC_8879.JPG" alt="The Plasma Pirates team highlighted in a group photo">
+<div class="questions-copy">
 <div class="closing-title">
 Plasma Pirates
 </div>
-<p>Surrogate models of the PALLAS simulation</p>
+<p>Surrogate Models of PALLAS Simulations</p>
 <div class="small">
 <p>Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente</p>
 </div>
 </div>
+</div>
+</div>
+</section>
+<section id="bonus-identifying-possible-outliers-in-trajectories" class="slide level2">
+<h2>Bonus: Identifying possible outliers in trajectories</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<iframe class="plotly-frame outlier-histogram-frame" src="data/trajectory_histograms.html" title="Interactive trajectory feature histograms" loading="lazy">
+</iframe>
+<div class="caption">
+<p>Static Hopsworks snapshot: use the dropdown to inspect one trajectory feature at a time.</p>
+</div>
+</div><div class="column" style="width:38%;">
+<h3 id="how-the-method-works">How the method works</h3>
+<p>For every numeric trajectory input and target, the explorer applies two complementary univariate tests:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-label="1"></a>q1, q3 <span class="op">=</span> values.quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
+<span id="cb5-2"><a href="" aria-label="2"></a>iqr <span class="op">=</span> q3 <span class="op">-</span> q1</span>
+<span id="cb5-3"><a href="" aria-label="3"></a>iqr_flag <span class="op">=</span> (values <span class="op">&lt;</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr) <span class="op">|</span> <span class="op">\</span></span>
+<span id="cb5-4"><a href="" aria-label="4"></a>           (values <span class="op">&gt;</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr)</span>
+<span id="cb5-5"><a href="" aria-label="5"></a></span>
+<span id="cb5-6"><a href="" aria-label="6"></a>median <span class="op">=</span> values.median()</span>
+<span id="cb5-7"><a href="" aria-label="7"></a>MAD <span class="op">=</span> <span class="bu">abs</span>(values <span class="op">-</span> median).median()</span>
+<span id="cb5-8"><a href="" aria-label="8"></a>robust_z <span class="op">=</span> <span class="bu">abs</span>(values <span class="op">-</span> median) <span class="op">/</span> (<span class="fl">1.4826</span> <span class="op">*</span> MAD)</span>
+<span id="cb5-9"><a href="" aria-label="9"></a>robust_flag <span class="op">=</span> robust_z <span class="op">&gt;</span> <span class="fl">3.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The two flags are combined with an <strong>OR</strong>. A row becomes a candidate outlier when at least one selected feature is flagged. The method identifies candidates; it does not delete rows automatically.</p>
+</div></div>
 
 </section>
     </div>
