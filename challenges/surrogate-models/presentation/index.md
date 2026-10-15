@@ -63,6 +63,12 @@ execute:
 
 {{< include sections/_18-results.md >}}
 
+{{< include sections/_18a-trajectory-explainability.md >}}
+
+{{< include sections/_18b-trajectory-ood.md >}}
+
+{{< include sections/_18c-trajectory-uncertainty.md >}}
+
 {{< include sections/_19-takeaways.md >}}
 
 {{< include sections/_19a-summary-next.md >}}

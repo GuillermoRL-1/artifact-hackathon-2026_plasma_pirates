@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-da8fe97b00025f52fb039ba394c259f6.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-4cb464bd586950443579ed8cea3648bb.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -753,6 +753,152 @@ Inverse A
 <p>Add the principal result figure or prediction-vs-truth plot here.</p>
 </div>
 </section>
+<section id="traj-explainability" class="slide level2">
+<h2>Trajectory · what the model listens to</h2>
+<div class="columns">
+<div class="column" style="width:56%;">
+<div class="viz-card">
+<div id="lime-heatmap" class="viz traj-md" data-traj="lime-heatmap">
+
+</div>
+</div>
+<div class="caption">
+<p>LIME weights of the six standardised inputs on each output (Sébastien Joly, <code>explainability_data.csv</code>). Blue pushes the output up, orange down. Click a column to rank its inputs.</p>
+</div>
+</div><div class="column" style="width:41%;">
+<div class="traj-switch" data-for="lime-bars">
+<button class="active" data-view="E_MeV">
+E
+</button>
+<button data-view="q_pC">
+q
+</button>
+<button data-view="dE_pct">
+ΔE
+</button>
+<button data-view="emit_um">
+ε
+</button>
+<button data-view="div_mrad">
+div
+</button>
+<button data-view="sigz_um">
+σz
+</button>
+</div>
+<div id="lime-bars" class="viz traj-sm" data-traj="lime-bars" data-view="E_MeV">
+
+</div>
+<div class="compact">
+<ul>
+<li>The <strong>laser focus <code>x_of</code></strong> dominates the energy (−1.24, the largest weight on E).</li>
+<li><strong>Position <code>z_mm</code></strong> drives energy, emittance and divergence: the bunch evolves along the cell.</li>
+<li>Charge and spread depend on several knobs at once: no single input explains them.</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>LIME fits a local linear model around predictions of the trajectory surrogate; the weights are on standardised inputs, so their sizes compare across inputs. The exact configurations LIME was run on are Sébastien’s choice; ask him before quoting it as a global ranking.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="traj-ood" class="slide level2">
+<h2>Trajectory · beyond the training density</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="viz-card">
+<div class="traj-switch" data-for="ood-chart">
+
+</div>
+<div id="ood-chart" class="viz traj-md" data-traj="ood-dumbbell">
+
+</div>
+</div>
+<div class="caption">
+<p>Official scores on the hidden test, per output: trained below P_max = 6 529 Pa, scored below (●) and above (◆) the cut. Pick a submission.</p>
+</div>
+</div><div class="column" style="width:35%;">
+<div id="ood-kpis" class="kpi-row kpi-3">
+
+</div>
+<div id="ood-gaps" class="viz traj-sm" data-traj="ood-gaps">
+
+</div>
+<div class="compact">
+<ul>
+<li>The Bayesian MLP retrained on the Hard split loses <strong>0.012 R²</strong> above the cut, the smallest gap of our four submissions.</li>
+<li>The bunch length <strong>σz</strong> is the output that suffers most out of distribution, for every model.</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="traj-uncertainty" class="slide level2">
+<h2>Trajectory · does the model know how wrong it is?</h2>
+<div class="traj-switch traj-switch-center" data-for="uncertainty-chart honesty-chart">
+<button data-view="E_MeV">
+Energy E
+</button>
+<button data-view="q_pC">
+Charge q
+</button>
+<button data-view="dE_pct">
+Energy spread ΔE
+</button>
+<button data-view="emit_um">
+Emittance ε
+</button>
+<button data-view="div_mrad">
+Divergence
+</button>
+<button class="active" data-view="sigz_um">
+Bunch length σz
+</button>
+</div>
+<div class="columns">
+<div class="column" style="width:47%;">
+<h3 id="one-simulation-it-never-saw">One simulation it never saw</h3>
+<div id="uncertainty-chart" class="viz traj-md" data-traj="uncertainty-curve" data-view="sigz_um">
+
+</div>
+<div class="sigma-control">
+<p><label for="sigma-k">band</label> <input id="sigma-k" type="range" min="1" max="3" step="0.5" value="1"> <b id="sigma-k-out">1σ</b> <span>simulation inside the band: <b id="sigma-inside">—</b></span></p>
+</div>
+</div><div class="column" style="width:50%;">
+<h3 id="all-1033-held-out-simulations">All 1,033 held-out simulations</h3>
+<div id="honesty-chart" class="viz traj-md" data-traj="honesty" data-view="sigz_um">
+
+</div>
+<div class="compact">
+<ul>
+<li>Every prediction comes with an error bar <strong>σ</strong> (MC dropout). Blue is the error the model <strong>announces</strong>, orange the error it <strong>makes</strong>.</li>
+<li>Lines together: the error bar can be trusted. <strong>Orange above blue: the model is over-confident.</strong></li>
+<li>For σz the error bar is honest inside the training range; past the cut the real error is about <strong>1.7×</strong> what the model announces (8.4 % vs 5.0 %).</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>Left: Sébastien’s MC-dropout curve of sj_trajectory_bayesian_nn v5 (configuration 1013, a held-out simulation), with the Smilei truth; the slider widens the band. Right: sj_trajectory_bayesian_nn_ood v1, 50 MC-dropout passes on its 1,033 holdout configurations; per configuration the RMS of sigma and of the actual error, as a relative error in %, medians per density bin. Energy spread and emittance are over-confident everywhere; energy, charge and divergence are cautious in range.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="takeaways-and-next-steps" class="slide level2">
 <h2>Takeaways and next steps</h2>
 <div class="columns">
@@ -1104,6 +1250,8 @@ Plasma Pirates
     <script src="data/pipeline_snapshot.js"></script>
     <script src="pipeline.js"></script>
     <script src="kaldera.js"></script>
+    <script src="data/trajectory_snapshot.js"></script>
+    <script src="trajectory.js"></script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

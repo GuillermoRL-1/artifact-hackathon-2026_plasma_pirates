@@ -78,6 +78,19 @@ from the challenge folder with the team `.env` available:
 ../../../.venv/bin/python presentation/build_pipeline_data.py
 ```
 
+## Rebuild the trajectory data
+
+The trajectory slides (`sections/_18a` to `_18c`) draw with `trajectory.js` from
+`data/trajectory_snapshot.js`, written by `build_trajectory_data.py`: Sébastien's
+LIME weights (`explainability_data.csv`) and MC-dropout curve (`uncertainties_data.csv`)
+with the Smilei truth, plus a calibration of `sj_trajectory_bayesian_nn_ood` v1 (MC
+dropout on its in-range and above-cut holdouts; needs Hopsworks). The OOD slide reads the
+official W&B scores from `data/pipeline_snapshot.js`.
+
+```bash
+../../../.venv/bin/python presentation/build_trajectory_data.py
+```
+
 ## Rebuild the static outlier histogram
 
 The outlier slide uses a local CSV/Plotly snapshot; it does not contact

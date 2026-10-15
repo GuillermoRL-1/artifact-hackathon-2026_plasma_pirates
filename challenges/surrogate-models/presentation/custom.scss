@@ -397,3 +397,17 @@ $line: rgba(165, 243, 252, 0.22);
   width: 0.7em; height: 0.7em; border: 0; border-radius: 50%; background: white;
   box-shadow: 0 0 0.8em rgba(34, 211, 238, 0.9);
 }
+
+/* ---- Trajectory slides (sections/_18a-c, trajectory.js) ---------------------------------- */
+
+.traj-switch { @extend .viz-switch; }
+.traj-md { height: 13.2em; }
+.traj-sm { height: 7.6em; }
+#ood-gaps { height: 6.4em; }
+.kpi-row.kpi-3 { grid-template-columns: repeat(3, 1fr); }
+.sigma-control { display: flex; align-items: center; gap: 0.5em; font-size: 0.45em; color: $muted; margin-top: 0.2em; }
+.sigma-control input { flex: 0 0 9em; accent-color: $cyan; }
+.sigma-control b { color: $amber; }
+.sigma-control span { margin-left: auto; }
+.traj-switch-center { justify-content: center; margin: -0.2em 0 0.3em; }
+.reveal .slides section#traj-uncertainty h3 { font-size: 0.6em; margin: 0 0 0.2em; color: $muted; }
