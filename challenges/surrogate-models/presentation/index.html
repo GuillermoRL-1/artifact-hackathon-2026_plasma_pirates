@@ -13,7 +13,7 @@
   <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente">
-  <title>Plasma Pirates: Surrogate Models of the PALLAS Simulation</title>
+  <title>Plasma Pirates: Surrogate Models of PALLAS Simulations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ca9c489559636a785dec1773a08d08b4.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-fec2aeef74aabbdb02491af3d45b7a5d.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -202,7 +202,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Plasma Pirates: Surrogate Models of the PALLAS Simulation</h1>
+  <h1 class="title">Plasma Pirates: Surrogate Models of PALLAS Simulations</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -213,31 +213,25 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 </div>
 
 </section>
-<section id="why-do-we-need-surrogate-models" class="slide level2">
-<h2>Why do we need surrogate models?</h2>
-<div class="columns">
-<div class="column" style="width:52%;">
-<h3 id="the-scientific-problem">The scientific problem</h3>
-<p>Use this space for the motivation: what makes the full PALLAS simulation expensive, and which questions need rapid answers?</p>
-<div class="placeholder">
-<p>Add one sentence describing the simulation bottleneck.</p>
-</div>
-</div><div class="column" style="width:42%;">
-<div class="accent-card">
-<p><strong>Central idea</strong></p>
-<p>Replace repeated high-fidelity simulation runs with a fast, validated approximation.</p>
-</div>
-<iframe class="video-frame" data-external="1" data-video-url="https://youtu.be/xH0mQ93MpMc" src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;playsinline=1&amp;rel=0" title="PALLAS simulation video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+<section id="plasma-based-electron-accelerators" class="slide level2">
+<h2>Plasma-based electron accelerators</h2>
+<p>Simulations of PALLAS in SMILEI can guide experiments and provide physical insight, however runs are computationally intensive.</p>
+<div class="video-stage">
+<iframe class="video-frame video-feature video-primary" data-external="1" data-video-url="https://youtu.be/xH0mQ93MpMc" src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=0&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;loop=1&amp;playlist=xH0mQ93MpMc" data-autoplay-src="https://www.youtube-nocookie.com/embed/xH0mQ93MpMc?autoplay=1&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;loop=1&amp;playlist=xH0mQ93MpMc" title="PALLAS simulation video" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
 </iframe>
-</div></div>
+<div class="accent-card fragment fade-up video-callout">
+<p><strong>Central idea</strong></p>
+<p>Replace repeated high-fidelity simulation (1000s core-hours) runs with a fast, validated approximation (millisecond per run).</p>
+</div>
+</div>
 </section>
-<section id="pallas-in-one-view" class="slide level2">
-<h2>PALLAS in one view</h2>
-<div class="placeholder hero-placeholder">
-<p>Insert a PALLAS / accelerator schematic, simulation snapshot, or system diagram.</p>
+<section id="plasma-pirates" class="slide level2">
+<h2>Plasma Pirates</h2>
+<div class="image-stage">
+<p><img src="index_files/images/original.png" alt="PALLAS accelerator overview"> <img class="fragment slide-in image-overlay" src="index_files/images/darken.png" alt="Darkened PALLAS accelerator overview"></p>
 </div>
 <div class="caption">
-<p>Suggested content: beamline context, simulation inputs, and the observables produced by the simulation.</p>
+<p>PALLAS accelerator overview.</p>
 </div>
 </section>
 <section id="from-simulation-to-surrogate" class="slide level2">
@@ -979,7 +973,9 @@ Plasma Pirates
       });
     </script>
     <!-- In the markup (not set from JS) so a self-contained render embeds it. -->
-    <img id="title-artwork-source" class="title-artwork" hidden="" src="index_files/images/plasma_pirates.jpeg" alt="Plasma Pirates crew with a dragon under the moon">
+    <!-- <img id="title-artwork-source" class="title-artwork" hidden
+         src="index_files/images/plasma_pirates.jpeg"
+         alt="Plasma Pirates crew with a dragon under the moon"> -->
 
     <script>
       // Keep the deck intentionally quiet: the placeholders are meant to be replaced
@@ -989,7 +985,7 @@ Plasma Pirates
       });
 
       const titleSlide = document.querySelector('#title-slide');
-      if (titleSlide) {
+      if (titleSlide && document.getElementById('title-artwork-source')) {
         const artworkFrame = document.createElement('div');
         artworkFrame.className = 'title-artwork-frame';
         const artwork = document.getElementById('title-artwork-source');

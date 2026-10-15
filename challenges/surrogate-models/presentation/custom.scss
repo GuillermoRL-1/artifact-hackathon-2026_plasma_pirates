@@ -125,11 +125,57 @@ $line: rgba(165, 243, 252, 0.22);
 .video-frame[hidden] { display: none; }
 .video-frame { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 0.7em; border: 1px solid $line; border-radius: 0.35em; background: #000; }
 .video-feature { height: 74vh; max-height: calc(100vh - 4.2em); aspect-ratio: auto; margin-top: 0.15em; }
+.video-primary { height: 55vh; max-height: calc(100vh - 10em); }
+.video-stage {
+  position: relative;
+  width: min(90vw, 80rem);
+  max-width: none;
+  margin-left: 0;
+  margin-right: auto;
+}
+.video-stage .video-frame { pointer-events: none; }
+.video-stage .video-callout {
+  position: absolute;
+  right: 1.5em;
+  bottom: 1.5em;
+  width: min(31em, 42%);
+  margin: 0;
+  background: rgba(8, 20, 32, 0.92);
+  box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.35);
+  font-size: 0.72em;
+}
 .plotly-frame { display: block; width: 100%; border: 1px solid $line; border-radius: 0.35em; background: transparent; }
 .outlier-histogram-frame { height: 19em; }
 .video-fallback { min-height: 7em; margin-top: 0.7em; padding: 1.1em; border: 1px dashed $line; border-radius: 0.35em; background: rgba(19, 40, 59, 0.72); color: $muted; font-size: 0.62em; text-align: center; }
 .video-fallback a { color: $fuchsia-soft; }
 .hero-placeholder { min-height: 10em; font-size: 0.85em; }
+.image-stage {
+  position: relative;
+  width: 100%;
+  height: 67vh;
+  margin: 0.2em auto 0;
+  overflow: hidden;
+  border: 1px solid $line;
+  border-radius: 0.35em;
+  background: $navy-light;
+}
+.image-stage img {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  max-width: none;
+  object-fit: contain;
+}
+.image-stage .image-overlay {
+  left: 0;
+  transform: none !important;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s ease-in-out;
+}
+.image-stage .image-overlay.visible,
+.image-stage .image-overlay.current-fragment { clip-path: inset(0); }
 .benchmark-placeholder { min-height: 10em; font-size: 0.85em; }
 .result-placeholder { min-height: 5em; margin-top: 0.8em; }
 .list-placeholder { min-height: 6em; justify-content: flex-start; text-align: left; }
@@ -268,4 +314,3 @@ $line: rgba(165, 243, 252, 0.22);
 }
 .reveal .panel-tabset ul.panel-tabset-tabby li a[aria-selected="true"] { color: $navy; background: $cyan; border-color: $cyan; font-weight: 650; }
 .reveal .panel-tabset .tab-content p { font-size: 0.45em; color: $muted; }
-

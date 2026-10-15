@@ -1,5 +1,5 @@
 ---
-title: "Plasma Pirates: Surrogate Models of the PALLAS Simulation"
+title: "Plasma Pirates: Surrogate Models of PALLAS Simulations"
 author: "Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente"
 format:
   revealjs:

@@ -1,7 +1,7 @@
 <!-- In the markup (not set from JS) so a self-contained render embeds it. -->
-<img id="title-artwork-source" class="title-artwork" hidden
+<!-- <img id="title-artwork-source" class="title-artwork" hidden
      src="index_files/images/plasma_pirates.jpeg"
-     alt="Plasma Pirates crew with a dragon under the moon">
+     alt="Plasma Pirates crew with a dragon under the moon"> -->
 
 <script>
   // Keep the deck intentionally quiet: the placeholders are meant to be replaced
@@ -11,7 +11,7 @@
   });
 
   const titleSlide = document.querySelector('#title-slide');
-  if (titleSlide) {
+  if (titleSlide && document.getElementById('title-artwork-source')) {
     const artworkFrame = document.createElement('div');
     artworkFrame.className = 'title-artwork-frame';
     const artwork = document.getElementById('title-artwork-source');

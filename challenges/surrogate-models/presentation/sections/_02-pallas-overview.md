@@ -1,9 +1,11 @@
-## PALLAS in one view
+## Plasma Pirates
 
-::: {.placeholder .hero-placeholder}
-Insert a PALLAS / accelerator schematic, simulation snapshot, or system diagram.
+::: {.image-stage}
+<img src="index_files/images/original.png" alt="PALLAS accelerator overview">
+<img class="fragment slide-in image-overlay" src="index_files/images/darken.png"
+     alt="Darkened PALLAS accelerator overview">
 :::
 
 ::: {.caption}
-Suggested content: beamline context, simulation inputs, and the observables produced by the simulation.
+PALLAS accelerator overview.
 :::
