@@ -2,39 +2,43 @@
 
 ::: {.columns .simulation-columns}
 ::: {.column .simulation-summary}
-**Challenges**
+**Prediction tasks**
 
-- Campaign A (varying gas and laser properties)
-    - Direct and inverse
-- Campaign B (fixing laser, inputting gas density curve)
-    - Direct and inverse
-    - Trajectory prediction (+ out of range)
-    - Moments of the plain
+- **Campaign A:** varying laser and gas settings
+  - Inverse: bunch properties → settings
+  - Direct prediction as a warm-up
+- **Campaign B:** fixed laser parameters, varying gas profile and focus
+  - Direct: settings → final bunch properties
+  - Inverse: bunch properties → gas-profile settings
+  - Trajectories: bunch evolution along the accelerator
+  - Moments: bunch centroids, widths and charge at observation planes
+
+**Key questions:** accuracy, data efficiency and generalisation beyond training conditions.
 :::
 
-::: {.column .fragment .custom .simulation-diagram}
+::: {.column .simulation-diagram}
 ::: {.pipeline}
-::: {.pipeline-step}
+::: {.pipeline-step .fragment .step-in}
 **01**  
-Simulation settings
+Accelerator settings
 
-Beam, target, and machine parameters
+Laser, gas profile and focus position
 :::
-::: {.pipeline-step}
+::: {.pipeline-step .fragment .step-in}
 **02**  
-PALLAS simulation
+PALLAS simulations
 
-High-fidelity trajectories and fields
+Particle-in-cell simulations with Smilei
 :::
-::: {.pipeline-step}
+::: {.pipeline-step .fragment .step-in}
 **03**  
-Training data
+Training and validation
 
-Features, targets, and quality checks
+Bunch properties, trajectories and moments
 :::
-::: {.pipeline-step .highlight}
+::: {.pipeline-step .highlight .fragment .step-in}
 **04**  
-Surrogate model
+Surrogate models
 
 Fast predictions for R&D
 :::

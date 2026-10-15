@@ -211,19 +211,20 @@ $line: rgba(165, 243, 252, 0.22);
 
 .reveal .slides section .simulation-columns { display: grid !important; grid-template-columns: 0.82fr 1.18fr; gap: 1.15em; align-items: center; margin-top: 1em; }
 .reveal .slides section .simulation-columns > .column { display: block; width: auto; vertical-align: initial; }
-.reveal .slides section .simulation-diagram.visible {
-  opacity: 0;
-  transform: translateX(4em);
-  transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.2), opacity 0.45s ease !important;
+/* The four pipeline blocks slide in one by one, in reading order (01 to 04). */
+.reveal .slides section .fragment.step-in {
+  transform: translateX(1.6em);
+  transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.2, 0.9, 0.25, 1.2), visibility 0.45s;
 }
-.reveal .slides section .simulation-diagram {
-  opacity: 1 !important;
-  transform: translate(0) !important;
+.reveal .slides section .fragment.step-in.visible { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section .fragment.step-in { transform: none; transition: opacity 0.2s; }
 }
 .simulation-summary { padding: 1em 1.1em; border: 1px solid $line; border-radius: 0.35em; background: rgba(19, 40, 59, 0.72); font-size: 0.65em; }
-.simulation-summary strong { display: block; color: $amber; font-size: 1.2em; margin-bottom: 0.45em; }
+.simulation-summary > p:first-child > strong { display: block; color: $amber; font-size: 1.2em; margin-bottom: 0.45em; }
 .simulation-summary ul { margin: 0; padding-left: 1.15em; }
-.simulation-summary li { margin: 0.65em 0; }
+.simulation-summary li { margin: 0.4em 0; }
+.simulation-summary li li { margin: 0.2em 0; }
 .pipeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65em; margin-top: 0; }
 .pipeline-step { min-height: 6.2em; padding: 0.75em; border: 1px solid $line; border-radius: 0.3em; background: $navy-light; font-size: 0.57em; }
 .pipeline-step strong { display: block; color: $amber; font-size: 1.25em; }

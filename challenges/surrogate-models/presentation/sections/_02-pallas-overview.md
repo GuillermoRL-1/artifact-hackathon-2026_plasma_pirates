@@ -11,7 +11,7 @@
     <li><strong>Guillermo:</strong> MLOps</li>
     <li><strong>Alex:</strong> Data exploration & modelling</li>
     <li><strong>Hayg:</strong> AI’s human representative</li>
-    <li><strong>Sébastian:</strong> ML model development</li>
+    <li><strong>Sébastien:</strong> ML model development</li>
     <li><strong>Keon:</strong> Bayesian surrogate modelling</li>
   </ul>
 </div>

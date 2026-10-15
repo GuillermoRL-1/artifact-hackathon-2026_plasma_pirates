@@ -9,7 +9,7 @@
 Surrogate Models of PALLAS Simulations
 
 ::: {.small}
-Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente
+Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodríguez Llorente
 :::
 </div>
 </div>

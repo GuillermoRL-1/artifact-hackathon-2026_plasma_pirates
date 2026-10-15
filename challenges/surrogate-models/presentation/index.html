@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-47f5712f28517124f43e7ab994b7c4c7.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2c182f37137a54dbc66889d32c5ab4bb.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -274,7 +274,7 @@ Team Roles
 <strong>Hayg:</strong> AI’s human representative
 </li>
 <li>
-<strong>Sébastian:</strong> ML model development
+<strong>Sébastien:</strong> ML model development
 </li>
 <li>
 <strong>Keon:</strong> Bayesian surrogate modelling
@@ -287,39 +287,42 @@ Team Roles
 <h2>From simulation to surrogate</h2>
 <div class="columns simulation-columns">
 <div class="column simulation-summary">
-<p><strong>Challenges</strong></p>
+<p><strong>Prediction tasks</strong></p>
 <ul>
-<li>Campaign A (varying gas and laser properties)
+<li><strong>Campaign A:</strong> varying laser and gas settings
 <ul>
-<li>Direct and inverse</li>
+<li>Inverse: bunch properties → settings</li>
+<li>Direct prediction as a warm-up</li>
 </ul></li>
-<li>Campaign B (fixing laser, inputting gas density curve)
+<li><strong>Campaign B:</strong> fixed laser parameters, varying gas profile and focus
 <ul>
-<li>Direct and inverse</li>
-<li>Trajectory prediction (+ out of range)</li>
-<li>Moments of the plain</li>
+<li>Direct: settings → final bunch properties</li>
+<li>Inverse: bunch properties → gas-profile settings</li>
+<li>Trajectories: bunch evolution along the accelerator</li>
+<li>Moments: bunch centroids, widths and charge at observation planes</li>
 </ul></li>
 </ul>
-</div><div class="column fragment custom simulation-diagram">
+<p><strong>Key questions:</strong> accuracy, data efficiency and generalisation beyond training conditions.</p>
+</div><div class="column simulation-diagram">
 <div class="pipeline">
-<div class="pipeline-step">
+<div class="pipeline-step fragment step-in">
 <p><strong>01</strong><br>
-Simulation settings</p>
-<p>Beam, target, and machine parameters</p>
+Accelerator settings</p>
+<p>Laser, gas profile and focus position</p>
 </div>
-<div class="pipeline-step">
+<div class="pipeline-step fragment step-in">
 <p><strong>02</strong><br>
-PALLAS simulation</p>
-<p>High-fidelity trajectories and fields</p>
+PALLAS simulations</p>
+<p>Particle-in-cell simulations with Smilei</p>
 </div>
-<div class="pipeline-step">
+<div class="pipeline-step fragment step-in">
 <p><strong>03</strong><br>
-Training data</p>
-<p>Features, targets, and quality checks</p>
+Training and validation</p>
+<p>Bunch properties, trajectories and moments</p>
 </div>
-<div class="pipeline-step highlight">
+<div class="pipeline-step highlight fragment step-in">
 <p><strong>04</strong><br>
-Surrogate model</p>
+Surrogate models</p>
 <p>Fast predictions for R&amp;D</p>
 </div>
 </div>
@@ -911,7 +914,7 @@ Plasma Pirates
 </div>
 <p>Surrogate Models of PALLAS Simulations</p>
 <div class="small">
-<p>Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente</p>
+<p>Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodríguez Llorente</p>
 </div>
 </div>
 </div>
