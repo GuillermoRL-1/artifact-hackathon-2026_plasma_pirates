@@ -269,3 +269,85 @@ $line: rgba(165, 243, 252, 0.22);
 .reveal .panel-tabset ul.panel-tabset-tabby li a[aria-selected="true"] { color: $navy; background: $cyan; border-color: $cyan; font-weight: 650; }
 .reveal .panel-tabset .tab-content p { font-size: 0.45em; color: $muted; }
 
+
+
+/* ---- Slide 2: KALDERA animation and its timeline (sections/_02, kaldera.js) --------------- */
+
+.reveal .slides section.kaldera-slide { padding: 0; }
+/* Only the animation: the title stays for the menu, the deck footer steps aside. */
+.reveal .slides section.kaldera-slide > h2 {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+}
+.reveal.on-kaldera .footer { display: none !important; }
+
+.kaldera-player {
+  position: absolute; left: -5%; right: -5%; top: -5%; bottom: -5%;
+  background: #16181f; overflow: hidden; isolation: isolate;
+}
+.reveal .kaldera-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  object-fit: cover; z-index: 0;
+}
+.kaldera-player::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 22%; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(13, 27, 42, 0.85), rgba(13, 27, 42, 0));
+}
+.kaldera-controls {
+  position: absolute; left: 9%; right: 9%; bottom: 9%; z-index: 2; font-size: 32px;
+  display: flex; align-items: center; gap: 0.6em;
+}
+/* Buttons do not inherit font-size by default, and every size here is in em. */
+.kaldera-play, .kaldera-clip, .kaldera-dot { font: inherit; }
+.kaldera-play, .kaldera-clip {
+  flex: none; width: 1.5em; height: 1.5em; border-radius: 50%; cursor: pointer; padding: 0;
+  border: 1px solid rgba(165, 243, 252, 0.45); background: rgba(13, 27, 42, 0.6);
+  display: grid; place-items: center; color: $ink;
+}
+.kaldera-play:hover, .kaldera-clip:hover { border-color: $cyan; }
+/* Icons drawn in CSS: a triangle, two bars when playing; micro/macro as a dot and a square. */
+.kaldera-play::before {
+  content: ""; margin-left: 0.15em; border-style: solid; border-width: 0.32em 0 0.32em 0.52em;
+  border-color: transparent transparent transparent $ink;
+}
+.kaldera-player.playing .kaldera-play::before {
+  margin-left: 0; width: 0.14em; height: 0.55em; border: 0; border-left: 0.14em solid $ink;
+  border-right: 0.14em solid $ink; padding: 0 0.1em;
+}
+.kaldera-clip::before {
+  content: ""; width: 0.42em; height: 0.42em; border-radius: 50%; background: $ink;
+  box-shadow: 0 0 0.5em rgba(232, 121, 249, 0.8);
+}
+.kaldera-player[data-clip="macro"] .kaldera-clip::before { border-radius: 0.08em; box-shadow: none; }
+
+.kaldera-track { position: relative; flex: 1; height: 1.4em; }
+.kaldera-stages { position: absolute; inset: 0; pointer-events: none; }
+.kaldera-segment {
+  position: absolute; top: calc(50% - 1px); height: 2px; opacity: 0.55;
+  border-left: 2px solid rgba(13, 27, 42, 0.9);
+}
+.kaldera-segment.red, .kaldera-dot.red { background: #e5484d; }
+.kaldera-segment.grey, .kaldera-dot.grey { background: #c4cdd6; }
+.kaldera-segment.blue, .kaldera-dot.blue { background: #3987e5; }
+.kaldera-dot {
+  position: absolute; top: 50%; width: 0.42em; height: 0.42em; padding: 0; margin: 0;
+  transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid rgba(13, 27, 42, 0.9);
+  cursor: pointer; pointer-events: auto; z-index: 2;
+}
+.kaldera-dot:hover { transform: translate(-50%, -50%) scale(1.5); }
+.kaldera-slider {
+  position: absolute; inset: 0; width: 100%; margin: 0; z-index: 1; cursor: pointer;
+  -webkit-appearance: none; appearance: none; background: transparent;
+}
+.kaldera-slider::-webkit-slider-runnable-track {
+  height: 2px; background: linear-gradient(to right, $cyan var(--progress, 0%), transparent var(--progress, 0%));
+}
+.kaldera-slider::-moz-range-track { height: 2px; background: transparent; }
+.kaldera-slider::-moz-range-progress { height: 2px; background: $cyan; }
+.kaldera-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 0.7em; height: 0.7em; margin-top: calc(-0.35em + 1px);
+  border-radius: 50%; background: white; box-shadow: 0 0 0.8em rgba(34, 211, 238, 0.9);
+}
+.kaldera-slider::-moz-range-thumb {
+  width: 0.7em; height: 0.7em; border: 0; border-radius: 50%; background: white;
+  box-shadow: 0 0 0.8em rgba(34, 211, 238, 0.9);
+}

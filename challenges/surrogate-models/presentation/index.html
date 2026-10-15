@@ -6,11 +6,11 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="index_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenivenko · Guillermo Rodrîguez Llorente">
   <title>Plasma Pirates: Surrogate Models of the PALLAS Simulation</title>
@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ca9c489559636a785dec1773a08d08b4.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-d4402e567a8c76f46ef2071ae3940ec2.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -231,14 +231,37 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 </iframe>
 </div></div>
 </section>
-<section id="pallas-in-one-view" class="slide level2">
+<section id="pallas-in-one-view" class="slide level2 kaldera-slide">
 <h2>PALLAS in one view</h2>
-<div class="placeholder hero-placeholder">
-<p>Insert a PALLAS / accelerator schematic, simulation snapshot, or system diagram.</p>
+<div class="kaldera-player" data-clip="micro">
+<video class="kaldera-video" data-external="1" muted="" playsinline="" preload="auto" aria-label="Laser-plasma accelerator animation (KALDERA, DESY)">
+</video>
+<div class="kaldera-controls">
+<button type="button" class="kaldera-play" aria-label="Play or pause" title="Play / pause">
+</button>
+<div class="kaldera-track">
+<input class="kaldera-slider" type="range" min="0" max="3600" step="1" value="0" aria-label="Animation timeline">
+<div class="kaldera-stages" aria-hidden="true">
+
 </div>
-<div class="caption">
-<p>Suggested content: beamline context, simulation inputs, and the observables produced by the simulation.</p>
 </div>
+<button type="button" class="kaldera-clip" aria-label="Switch between the plasma and the machine view" title="Plasma / machine view">
+</button>
+</div>
+</div>
+<aside class="notes">
+<p>Animation and timeline from DESY’s KALDERA site (kaldera.desy.de), streamed from their server: the micro view is the laser pulse, the plasma wave, the injected bunch and its acceleration; the round button switches to the machine (macro) view. Drag the slider or click a stage marker; the space bar is Reveal’s, the play button is the player’s.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="from-simulation-to-surrogate" class="slide level2">
 <h2>From simulation to surrogate</h2>
@@ -1052,6 +1075,7 @@ Plasma Pirates
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="data/pipeline_snapshot.js"></script>
     <script src="pipeline.js"></script>
+    <script src="kaldera.js"></script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
