@@ -63,6 +63,8 @@ execute:
 
 [comment]: <> ({{< include sections/_19-takeaways.md >}})
 
+{{< include sections/_13-case_study.md >}}
+
 {{< include sections/_18a-trajectory-explainability.md >}}
 
 {{< include sections/_18b-trajectory-ood.md >}}

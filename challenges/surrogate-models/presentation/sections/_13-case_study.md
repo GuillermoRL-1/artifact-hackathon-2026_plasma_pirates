@@ -12,7 +12,7 @@ The case was modelled using three different neural-network architectures:
 
 4 $\times$ 256 neurons.
 
-##![](/data/MLP.png){width=50%}
+<!-- ![](data/MLP.png){width=50%}: add the image to presentation/data/ -->
 
 :::
 
@@ -28,9 +28,9 @@ Trend + Seasonal decomposition, linear projection
 
 <div class="card-title">Bayesian Neural Network</div>
 
-4 $\times$ 256 neurons, SiLU, 5% droptout
+4 $\times$ 256 neurons, SiLU, 5% dropout
 
-![](/data/BNN.png){width=50%}
+<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
 
 :::
 
@@ -40,6 +40,8 @@ Trend + Seasonal decomposition, linear projection
 
 Residual-based MLP, 4 $\times$ 256 neurons
 
-![](/data/BNN.png){width=50%}
+<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
+
+:::
 
 :::

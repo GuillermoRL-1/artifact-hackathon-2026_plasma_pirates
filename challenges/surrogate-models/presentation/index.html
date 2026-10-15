@@ -667,6 +667,40 @@ Hand-in manifest
 </div>
 </div></div>
 </section>
+<section id="case-study-trajectoryb" class="slide level2">
+<h2>Case study: TrajectoryB</h2>
+<p>TrajectoryB predicts the evolution of key beam properties along the plasma trajectory from the simulation settings and longitudinal position.</p>
+<p>The case was modelled using three different neural-network architectures:</p>
+<div class="cards">
+<div class="model-card">
+<div class="card-title">
+Multilayer Perceptron
+</div>
+<p>4 <span class="math inline">\(\times\)</span> 256 neurons.</p>
+<!-- ![](data/MLP.png){width=50%}: add the image to presentation/data/ -->
+</div>
+<div class="model-card">
+<div class="card-title">
+DLinear
+</div>
+<p>Trend + Seasonal decomposition, linear projection</p>
+</div>
+<div class="model-card">
+<div class="card-title">
+Bayesian Neural Network
+</div>
+<p>4 <span class="math inline">\(\times\)</span> 256 neurons, SiLU, 5% dropout</p>
+<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
+</div>
+<div class="model-card">
+<div class="card-title">
+Residual Mixture Density Network
+</div>
+<p>Residual-based MLP, 4 <span class="math inline">\(\times\)</span> 256 neurons</p>
+<!-- ![](data/BNN.png){width=50%}: add the image to presentation/data/ -->
+</div>
+</div>
+</section>
 <section id="traj-explainability" class="slide level2">
 <h2>Trajectory · what the model listens to</h2>
 <div class="columns">
