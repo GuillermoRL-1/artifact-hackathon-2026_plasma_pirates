@@ -184,6 +184,21 @@ $line: rgba(165, 243, 252, 0.22);
 }
 .image-stage .image-overlay.visible,
 .image-stage .image-overlay.current-fragment { clip-path: inset(0); }
+.overview-callout {
+  position: absolute;
+  left: 1.1em;
+  bottom: 1.1em;
+  z-index: 3;
+  width: min(24em, 48%);
+  margin: 0;
+  background: rgba(8, 18, 30, 0.84);
+  box-shadow: 0 0.45em 1.25em rgba(0, 0, 0, 0.3);
+  transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.2);
+}
+.reveal .slides section .overview-callout.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 .benchmark-placeholder { min-height: 10em; font-size: 0.85em; }
 .result-placeholder { min-height: 5em; margin-top: 0.8em; }
 .list-placeholder { min-height: 6em; justify-content: flex-start; text-align: left; }
@@ -194,8 +209,23 @@ $line: rgba(165, 243, 252, 0.22);
 .caption, .notes { color: $muted; font-size: 0.48em; margin-top: 0.65em; }
 .notes { color: $amber; }
 
-.pipeline { display: flex; align-items: center; gap: 0.35em; margin-top: 1.3em; }
-.pipeline-step { flex: 1; min-height: 6em; padding: 0.75em; border: 1px solid $line; border-radius: 0.3em; background: $navy-light; font-size: 0.57em; }
+.reveal .slides section .simulation-columns { display: grid !important; grid-template-columns: 0.82fr 1.18fr; gap: 1.15em; align-items: center; margin-top: 1em; }
+.reveal .slides section .simulation-columns > .column { display: block; width: auto; vertical-align: initial; }
+.reveal .slides section .simulation-diagram.visible {
+  opacity: 0;
+  transform: translateX(4em);
+  transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.2), opacity 0.45s ease !important;
+}
+.reveal .slides section .simulation-diagram {
+  opacity: 1 !important;
+  transform: translate(0) !important;
+}
+.simulation-summary { padding: 1em 1.1em; border: 1px solid $line; border-radius: 0.35em; background: rgba(19, 40, 59, 0.72); font-size: 0.65em; }
+.simulation-summary strong { display: block; color: $amber; font-size: 1.2em; margin-bottom: 0.45em; }
+.simulation-summary ul { margin: 0; padding-left: 1.15em; }
+.simulation-summary li { margin: 0.65em 0; }
+.pipeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65em; margin-top: 0; }
+.pipeline-step { min-height: 6.2em; padding: 0.75em; border: 1px solid $line; border-radius: 0.3em; background: $navy-light; font-size: 0.57em; }
 .pipeline-step strong { display: block; color: $amber; font-size: 1.25em; }
 .pipeline-step.highlight { border-color: $fuchsia; box-shadow: 0 0 1.5em rgba(232, 121, 249, 0.16); }
 .pipeline-arrow { color: $cyan; font-size: 1.3em; }
