@@ -449,7 +449,12 @@ $line: rgba(165, 243, 252, 0.22);
   border: 1px solid rgba(165, 243, 252, 0.45); background: rgba(13, 27, 42, 0.6);
   display: grid; place-items: center; color: $ink;
 }
-.kaldera-play:hover, .kaldera-clip:hover { border-color: $cyan; }
+.kaldera-play:hover, .kaldera-clip:hover, .kaldera-speed:hover { border-color: $cyan; }
+.kaldera-speed {
+  flex: none; height: 2.5em; min-width: 3.6em; padding: 0 0.7em; cursor: pointer;   /* 1.5em of the controls at 0.6em */
+  font: inherit; font-size: 0.6em; font-weight: 650; font-variant-numeric: tabular-nums; color: $ink;
+  border: 1px solid rgba(165, 243, 252, 0.45); border-radius: 999px; background: rgba(13, 27, 42, 0.6);
+}
 /* Icons drawn in CSS: a triangle, two bars when playing; micro/macro as a dot and a square. */
 .kaldera-play::before {
   content: ""; margin-left: 0.15em; border-style: solid; border-width: 0.32em 0 0.32em 0.52em;

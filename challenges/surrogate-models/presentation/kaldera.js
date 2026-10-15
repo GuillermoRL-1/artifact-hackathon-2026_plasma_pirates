@@ -23,6 +23,9 @@
     ['Application', 'blue', [1950, 2250], [1750, 2050], [3200, 3384, 3600]],
   ];
   const END = 3600;
+  // Playback speeds of the speed button, and the one each player starts at.
+  const SPEEDS = [1, 2, 3, 5];
+  const DEFAULT_SPEED = 3;
 
   players.forEach((player) => {
   const video = player.querySelector('.kaldera-video');
@@ -32,6 +35,28 @@
   const slide = player.closest('section');
   let clip = player.dataset.clip || 'micro';
   const frames = (stage) => (clip === 'macro' ? stage[2] : stage[3]);
+
+  // Speed: a button next to the view switch cycles through SPEEDS. Loading a clip resets the
+  // rate, so it is applied again on every load.
+  let speed = Number(player.dataset.speed) || DEFAULT_SPEED;
+  const speedButton = document.createElement('button');
+  speedButton.type = 'button';
+  speedButton.className = 'kaldera-speed';
+  speedButton.title = `Playback speed (${SPEEDS.map((x) => `${x}×`).join(', ')})`;
+  clipButton.before(speedButton);
+  const applySpeed = () => {
+    video.defaultPlaybackRate = speed;
+    video.playbackRate = speed;
+    speedButton.textContent = `${speed}×`;
+    speedButton.setAttribute('aria-label', `Playback speed ${speed} times`);
+  };
+  speedButton.addEventListener('click', () => {
+    speed = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length];
+    applySpeed();
+    speedButton.blur();   // arrows back to the deck
+  });
+  video.addEventListener('loadedmetadata', applySpeed);
+  applySpeed();
 
   const frameAt = (t) => {
     const stage = STAGES.find((s) => t <= s[4][2]) || STAGES[STAGES.length - 1];
