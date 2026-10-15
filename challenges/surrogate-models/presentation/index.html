@@ -104,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-01a183123d1b3a64149acb081baffd3b.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-d7e4ce255c4be796034dcd44c7a08f02.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -255,35 +255,67 @@ Hayg Guler · Alexander Hill · Sébastien Joly · Keon Hee Kim · Mykyta Lenive
 <section id="plasma-pirates" class="slide level2">
 <h2>Plasma Pirates</h2>
 <div class="image-stage">
-<p><img src="index_files/images/original.png" alt="PALLAS accelerator overview"> <img class="fragment slide-in image-overlay" src="index_files/images/darken.png" alt="Darkened PALLAS accelerator overview"></p>
+<img src="index_files/images/original.png" alt="PALLAS accelerator overview"> <img class="fragment slide-in image-overlay" src="index_files/images/darken.png" alt="Darkened PALLAS accelerator overview">
+<div class="accent-card fragment fade-up overview-callout">
+<p class="callout-title">
+Team Roles
+</p>
+<ul class="team-list">
+<li>
+<strong>Mykyta:</strong> Model fine tuning &amp; calibration
+</li>
+<li>
+<strong>Guillermo:</strong> MLOps
+</li>
+<li>
+<strong>Alex:</strong> Data exploration &amp; modelling
+</li>
+<li>
+<strong>Hayg:</strong> AI’s human representative
+</li>
+<li>
+<strong>Sébastian:</strong> ML model development
+</li>
+<li>
+<strong>Keon:</strong> Bayesian surrogate modelling
+</li>
+</ul>
+</div>
 </div>
 </section>
 <section id="from-simulation-to-surrogate" class="slide level2">
 <h2>From simulation to surrogate</h2>
+<div class="columns simulation-columns">
+<div class="column simulation-summary">
+<p><strong>Challenges</strong></p>
+<ul>
+<li>Campaign A (varying gas and laser properties)
+<ul>
+<li>Direct and inverse</li>
+</ul></li>
+<li>Campaign B (fixing laser, inputting gas density curve)
+<ul>
+<li>Direct and inverse</li>
+<li>Trajectory prediction (+ out of range)</li>
+<li>Moments of the plain</li>
+</ul></li>
+</ul>
+</div><div class="column fragment custom simulation-diagram">
 <div class="pipeline">
 <div class="pipeline-step">
 <p><strong>01</strong><br>
 Simulation settings</p>
 <p>Beam, target, and machine parameters</p>
 </div>
-<div class="pipeline-arrow">
-<p>→</p>
-</div>
 <div class="pipeline-step">
 <p><strong>02</strong><br>
 PALLAS simulation</p>
 <p>High-fidelity trajectories and fields</p>
 </div>
-<div class="pipeline-arrow">
-<p>→</p>
-</div>
 <div class="pipeline-step">
 <p><strong>03</strong><br>
 Training data</p>
 <p>Features, targets, and quality checks</p>
-</div>
-<div class="pipeline-arrow">
-<p>→</p>
 </div>
 <div class="pipeline-step highlight">
 <p><strong>04</strong><br>
@@ -291,6 +323,7 @@ Surrogate model</p>
 <p>Fast predictions for R&amp;D</p>
 </div>
 </div>
+</div></div>
 <aside class="notes">
 <p>Replace the labels above with the final data flow once the presentation narrative is settled.</p>
 <style type="text/css">
